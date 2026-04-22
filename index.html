@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CFO Familiar">
@@ -10,135 +10,174 @@
 <title>CFO Familiar — MP</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
-:root{--navy:#0f2140;--navy2:#1a3a5c;--blue:#2563eb;--blue-l:#dbeafe;--green:#16a34a;--green-l:#dcfce7;--red:#dc2626;--red-l:#fee2e2;--amber:#d97706;--amber-l:#fef3c7;--gray:#6b7280;--gray-l:#f9fafb;--border:#e5e7eb;--white:#fff;--text:#111827;--text2:#6b7280;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08)}
+:root{--navy:#0f2140;--navy2:#1a3a5c;--blue:#2563eb;--blue-l:#dbeafe;--green:#16a34a;--green-l:#dcfce7;--red:#dc2626;--red-l:#fee2e2;--amber:#d97706;--amber-l:#fef3c7;--gray:#6b7280;--gray-l:#f9fafb;--border:#e5e7eb;--text:#111827;--text2:#6b7280;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#f1f5f9;color:var(--text);font-size:14px}
+body{font-family:'DM Sans',sans-serif;background:#f1f5f9;color:var(--text);font-size:14px;-webkit-tap-highlight-color:transparent}
 
-/* ── PIN SCREEN ── */
-#pin-screen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:24px}
-.pin-logo{color:#fff;font-size:22px;font-weight:600;letter-spacing:-.5px}.pin-logo span{color:#60a5fa}
-.pin-card{background:#fff;border-radius:16px;padding:32px 28px;width:280px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.3)}
-.pin-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
-.pin-sub{font-size:12px;color:var(--text2);margin-bottom:20px}
-.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
+/* PIN */
+#pin-screen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:20px}
+.pin-logo{color:#fff;font-size:22px;font-weight:600}.pin-logo span{color:#60a5fa}
+.pin-card{background:#fff;border-radius:16px;padding:28px 24px;width:min(280px,90vw);text-align:center}
+.pin-title{font-size:15px;font-weight:600;margin-bottom:4px}.pin-sub{font-size:12px;color:var(--text2);margin-bottom:18px}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
 .pin-dot{width:14px;height:14px;border-radius:50%;background:#e5e7eb;transition:background .15s}
 .pin-dot.filled{background:var(--navy)}
 .pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.pin-btn{height:52px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;cursor:pointer;transition:all .12s;color:var(--text)}
-.pin-btn:hover{background:var(--gray-l);border-color:#9ca3af}
-.pin-btn:active{transform:scale(.95);background:#e5e7eb}
-.pin-btn.del{font-size:14px;color:var(--text2)}
-.pin-error{font-size:12px;color:var(--red);min-height:16px;margin-top:4px}
+.pin-btn{height:52px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;cursor:pointer;transition:all .1s;color:var(--text)}
+.pin-btn:active{transform:scale(.93);background:#e5e7eb}
+.pin-btn.del{font-size:13px;color:var(--text2)}
+.pin-error{font-size:12px;color:var(--red);min-height:16px;margin-top:6px}
 
-/* ── TOPBAR ── */
-.topbar{background:var(--navy);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100}
-.topbar-logo{color:#fff;font-size:15px;font-weight:600}.topbar-logo span{color:#60a5fa}
+/* TOPBAR */
+.topbar{background:var(--navy);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100}
+.tlogo{color:#fff;font-size:15px;font-weight:600}.tlogo span{color:#60a5fa}
 .vtoggle{display:flex;gap:3px;background:rgba(255,255,255,.1);padding:3px;border-radius:8px}
-.vbtn{padding:4px 14px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.55);background:transparent;transition:all .15s}
+.vbtn{padding:4px 12px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.55);background:transparent;transition:all .15s}
 .vbtn.active{background:#fff;color:var(--navy)}
-.sync-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);font-size:12px;padding:4px 8px;border-radius:6px;transition:all .15s;font-family:'DM Sans',sans-serif}
-.sync-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
-.sync-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:4px}
-.sync-dot.loading{background:#f59e0b;animation:pulse .8s infinite}
-.sync-dot.error{background:#ef4444}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.sync-area{display:flex;align-items:center;gap:6px}
+.sync-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);font-size:11px;padding:4px 6px;border-radius:6px;font-family:'DM Sans',sans-serif}
+.sync-btn:active{background:rgba(255,255,255,.1)}
+.sdot{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:3px}
+.sdot.spin{background:#f59e0b;animation:pu .7s infinite}
+.sdot.err{background:#ef4444}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
 
-.vista{display:none;padding:14px;max-width:860px;margin:0 auto}.vista.active{display:block}
-.tabs{display:flex;gap:3px;background:#e2e8f0;padding:3px;border-radius:10px;margin-bottom:14px}
-.tab{flex:1;text-align:center;padding:7px 4px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text2);transition:all .15s;border:none;background:none;font-family:'DM Sans',sans-serif}
+/* LAYOUT */
+.vista{display:none;padding:12px;max-width:860px;margin:0 auto}.vista.active{display:block}
+.tabs{display:flex;gap:2px;background:#e2e8f0;padding:3px;border-radius:10px;margin-bottom:12px}
+.tab{flex:1;text-align:center;padding:7px 3px;border-radius:8px;font-size:11px;font-weight:500;cursor:pointer;color:var(--text2);border:none;background:none;font-family:'DM Sans',sans-serif;transition:all .15s}
 .tab.active{background:#fff;color:var(--text);box-shadow:var(--sh)}
-.card{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:14px 16px;margin-bottom:12px;box-shadow:var(--sh)}
-.card-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:13px 15px;margin-bottom:11px;box-shadow:var(--sh)}
+.ctitle{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px;display:flex;align-items:center;gap:5px}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
-.metric{background:var(--gray-l);border-radius:9px;padding:11px 13px;border:1px solid var(--border)}
-.metric-label{font-size:11px;color:var(--text2);margin-bottom:3px}
-.metric-value{font-size:19px;font-weight:600;font-family:'DM Mono',monospace;line-height:1.2}
-.metric-sub{font-size:10px;color:var(--text2);margin-top:1px}
-.m-green .metric-value{color:var(--green)}.m-red .metric-value{color:var(--red)}.m-amber .metric-value{color:var(--amber)}
-.trow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:13px;gap:8px}
+
+/* METRICS */
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:11px}
+.mg4{grid-template-columns:repeat(4,1fr)}
+.metric{background:var(--gray-l);border-radius:9px;padding:10px 12px;border:1px solid var(--border)}
+.mlabel{font-size:10px;color:var(--text2);margin-bottom:2px}
+.mval{font-size:18px;font-weight:600;font-family:'DM Mono',monospace;line-height:1.2}
+.msub{font-size:9px;color:var(--text2);margin-top:1px}
+.m-green .mval{color:var(--green)}.m-red .mval{color:var(--red)}.m-amber .mval{color:var(--amber)}
+
+/* ROWS */
+.trow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6;font-size:13px;gap:6px}
 .trow:last-child{border-bottom:none}
-.tl{color:var(--text2);flex:1}.tv{font-weight:600;font-family:'DM Mono',monospace;font-size:12px;white-space:nowrap}
+.tl{color:var(--text2);flex:1;font-size:12px}.tv{font-weight:600;font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap}
 .tv.pos{color:var(--green)}.tv.neg{color:var(--red)}
-.trow.ttotal{background:#f8fafc;margin:6px -16px -14px;padding:10px 16px;border-radius:0 0 10px 10px;border-top:1px solid var(--border)}
-.trow.ttotal .tl{font-weight:600;color:var(--text);font-size:13px}.trow.ttotal .tv{font-size:14px}
-.en{background:none;border:none;border-bottom:1.5px dashed #cbd5e1;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;color:var(--green);text-align:right;width:130px;padding:1px 4px;cursor:text;outline:none;transition:border-color .15s}
+.ttotal{background:#f8fafc;margin:5px -15px -13px;padding:9px 15px;border-radius:0 0 10px 10px;border-top:1px solid var(--border)}
+.ttotal .tl{font-weight:600;color:var(--text);font-size:13px}.ttotal .tv{font-size:13px}
+
+/* EDITABLE */
+.en{background:none;border:none;border-bottom:1.5px dashed #cbd5e1;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--green);text-align:right;width:115px;padding:1px 3px;outline:none}
 .en:focus{border-bottom-color:var(--blue);color:var(--blue);background:#eff6ff;border-radius:4px}
 .en.neg{color:var(--red)}.en.neg:focus{color:var(--blue)}
-.slabel{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;padding:8px 0 3px;border-bottom:1px solid #f1f5f9;margin-bottom:2px}
-.alerta{border-radius:var(--r);padding:10px 13px;font-size:13px;line-height:1.5;margin-bottom:10px;border-left:3px solid}
+.slabel{font-size:9px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;padding:7px 0 2px;border-bottom:1px solid #f1f5f9;margin-bottom:1px}
+
+/* ALERTS */
+.alerta{border-radius:var(--r);padding:9px 12px;font-size:12px;line-height:1.5;margin-bottom:10px;border-left:3px solid}
 .a-green{background:var(--green-l);border-color:var(--green);color:#14532d}
 .a-red{background:var(--red-l);border-color:var(--red);color:#7f1d1d}
 .a-amber{background:var(--amber-l);border-color:var(--amber);color:#78350f}
 .a-blue{background:var(--blue-l);border-color:var(--blue);color:#1e40af}
-.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:99px;font-weight:600}
+
+/* BADGE */
+.badge{display:inline-block;font-size:9px;padding:2px 6px;border-radius:99px;font-weight:600}
 .b-red{background:var(--red-l);color:#b91c1c}.b-amber{background:var(--amber-l);color:#92400e}
 .b-blue{background:var(--blue-l);color:#1d4ed8}.b-gray{background:#f3f4f6;color:var(--gray)}
-.prog-wrap{margin:5px 0 2px}.prog-label{display:flex;justify-content:space-between;font-size:10px;color:var(--text2);margin-bottom:3px}
-.prog-track{height:5px;background:#f1f5f9;border-radius:99px}.prog-fill{height:5px;border-radius:99px}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.fg{display:flex;flex-direction:column;gap:4px}.fg.full{grid-column:1/-1}
+.b-green{background:var(--green-l);color:#15803d}
+
+/* PROGRESS */
+.pbar{margin:4px 0 2px}.pbar-top{display:flex;justify-content:space-between;font-size:9px;color:var(--text2);margin-bottom:2px}
+.ptrack{height:4px;background:#f1f5f9;border-radius:99px}.pfill{height:4px;border-radius:99px}
+
+/* FORM */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fg{display:flex;flex-direction:column;gap:3px}.fg.full{grid-column:1/-1}
 label{font-size:11px;font-weight:500;color:var(--text2)}
-input[type=text],input[type=number],input[type=date],select,textarea{border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:#fff;outline:none;width:100%;transition:border-color .15s}
+input[type=text],input[type=number],input[type=date],select,textarea{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:#fff;outline:none;width:100%;transition:border-color .15s;-webkit-appearance:none}
 input:focus,select:focus{border-color:var(--blue)}
-.btn-primary{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:6px;transition:background .15s}
-.btn-primary:hover{background:var(--navy2)}
-.ditem{padding:10px 0;border-bottom:1px solid #f3f4f6;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:5px;transition:background .15s}
+.btn:active{background:var(--navy2)}
+.btn-sm{padding:6px 12px;font-size:11px;width:auto;margin:0;border-radius:6px}
+.btn-outline{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.btn-outline:active{background:var(--gray-l)}
+
+/* DEUDA */
+.ditem{padding:9px 0;border-bottom:1px solid #f3f4f6;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .ditem:last-child{border-bottom:none}
-.dname{font-weight:500;font-size:13px}.ddetail{font-size:11px;color:var(--text2);margin-top:1px}
-.dsaldo{font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:var(--red);text-align:right}
+.dname{font-weight:500;font-size:12px}.ddetail{font-size:10px;color:var(--text2);margin-top:1px}
+.dsaldo{font-family:'DM Mono',monospace;font-size:12px;font-weight:600;color:var(--red);text-align:right}
 .dcuota{font-size:10px;color:var(--text2);text-align:right;margin-top:1px}
-.ptable{width:100%;border-collapse:collapse;font-size:12px}
-.ptable th{background:var(--navy);color:#fff;padding:7px 9px;text-align:left;font-weight:500;font-size:11px}
-.ptable td{padding:6px 9px;border-bottom:1px solid #f3f4f6;font-family:'DM Mono',monospace}
-.ptable tr:hover td{background:#f8fafc}.ptable tr.hl td{background:var(--amber-l)}
-.ptable .neg{color:var(--red)}.ptable .pos{color:var(--green)}
-.gitem{display:grid;grid-template-columns:52px 1fr auto;gap:6px 10px;align-items:center;padding:8px 0;border-bottom:1px solid #f9fafb;font-size:13px}
-.gitem:last-child{border-bottom:none}
-.gfecha{font-size:10px;color:var(--text2);font-family:'DM Mono',monospace}
-.gdesc{font-weight:500}.gcat{font-size:11px;color:var(--text2)}
-.gmonto{font-family:'DM Mono',monospace;font-weight:600;color:var(--red);white-space:nowrap}
-.delbtn{background:none;border:none;cursor:pointer;color:#e5e7eb;font-size:14px;padding:2px 6px;border-radius:5px;transition:all .15s}
-.delbtn:hover{color:var(--red);background:var(--red-l)}
+
+/* TC CARDS */
 .tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tc-card{background:var(--gray-l);border-radius:9px;padding:10px 12px;border:1px solid var(--border)}
+.tc-card{background:var(--gray-l);border-radius:9px;padding:10px 11px;border:1px solid var(--border)}
 .tc-name{font-size:11px;font-weight:600}.tc-num{font-size:10px;color:var(--text2)}
-.tc-deuda{font-family:'DM Mono',monospace;font-size:16px;font-weight:600;color:var(--red);margin:4px 0 2px}
-.tc-venc{font-size:10px;color:var(--text2)}
-.esc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;padding:9px 20px;border-radius:99px;font-size:13px;font-weight:500;z-index:9998;transition:transform .25s ease;white-space:nowrap}
+.tc-deuda{font-family:'DM Mono',monospace;font-size:15px;font-weight:600;color:var(--red);margin:3px 0 1px}
+.tc-venc{font-size:9px;color:var(--text2)}
+
+/* PROJ TABLE */
+.ptable{width:100%;border-collapse:collapse;font-size:11px}
+.ptable th{background:var(--navy);color:#fff;padding:6px 7px;text-align:left;font-weight:500;font-size:10px}
+.ptable td{padding:5px 7px;border-bottom:1px solid #f3f4f6;font-family:'DM Mono',monospace}
+.ptable tr.hl td{background:var(--amber-l)}.ptable .neg{color:var(--red)}.ptable .pos{color:var(--green)}
+
+/* GASTOS */
+.gitem{display:grid;grid-template-columns:48px 1fr auto;gap:5px 8px;align-items:center;padding:7px 0;border-bottom:1px solid #f9fafb;font-size:12px}
+.gitem:last-child{border-bottom:none}
+.gfecha{font-size:9px;color:var(--text2);font-family:'DM Mono',monospace}
+.gdesc{font-weight:500;font-size:12px}.gcat{font-size:10px;color:var(--text2)}
+.gmonto{font-family:'DM Mono',monospace;font-weight:600;color:var(--red);white-space:nowrap;font-size:11px}
+.delbtn{background:none;border:none;cursor:pointer;color:#e5e7eb;font-size:13px;padding:2px 5px;border-radius:5px}
+.delbtn:active{color:var(--red);background:var(--red-l)}
+
+/* RECURRENTES — CHECKLIST */
+.rec-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;transition:background .1s}
+.rec-item:last-child{border-bottom:none}
+.rec-item:active{background:#f9fafb}
+.rec-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;background:#fff}
+.rec-check.done{background:var(--green);border-color:var(--green)}
+.rec-check.done::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.rec-label{flex:1;font-size:13px;color:var(--text)}
+.rec-label.done{text-decoration:line-through;color:var(--text2)}
+.rec-monto{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--text2)}
+.rec-monto.done{color:var(--green)}
+.rec-medio{font-size:10px;color:var(--text2);white-space:nowrap}
+.rec-progress{margin:8px 0 4px}
+.rec-prog-bar{height:6px;background:#f1f5f9;border-radius:99px;overflow:hidden}
+.rec-prog-fill{height:6px;border-radius:99px;background:var(--green);transition:width .4s ease}
+.rec-stats{display:flex;justify-content:space-between;font-size:10px;color:var(--text2);margin-top:3px}
+.rec-section{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;padding:8px 0 3px;border-bottom:1px solid #f1f5f9}
+.rec-reset-btn{font-size:10px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline}
+
+/* TOAST */
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--navy);color:#fff;padding:8px 18px;border-radius:99px;font-size:12px;font-weight:500;z-index:9998;transition:transform .22s ease;white-space:nowrap;pointer-events:none}
 #toast.show{transform:translateX(-50%) translateY(0)}
-.hint{font-size:9px;color:#94a3b8;font-style:italic;text-transform:none;letter-spacing:0;margin-left:6px}
-@media(max-width:480px){.fgrid{grid-template-columns:1fr}.mg{grid-template-columns:1fr 1fr}.tc-grid{grid-template-columns:1fr}.ptable{font-size:10px}.ptable th,.ptable td{padding:5px 6px}.esc-grid{grid-template-columns:1fr}}
+
+/* RESPONSIVE */
+@media(min-width:600px){.mg{grid-template-columns:repeat(4,1fr)}.fgrid{grid-template-columns:1fr 1fr}.en{width:130px}.tab{font-size:12px}.mval{font-size:20px}.tl{font-size:13px}.tv{font-size:12px}}
+@media(max-width:360px){.mg{grid-template-columns:1fr 1fr}.mval{font-size:15px}.en{width:95px;font-size:10px}.tab{font-size:10px}.pin-btn{height:46px;font-size:16px}}
+@media(max-height:500px) and (orientation:landscape){.topbar{height:42px}.vista{padding:8px}.card{margin-bottom:7px}.mg{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
 
-<!-- ══════════ PIN SCREEN ══════════ -->
+<!-- PIN -->
 <div id="pin-screen">
   <div class="pin-logo">CFO <span>Familiar</span></div>
   <div class="pin-card">
     <div class="pin-title">Acceso privado</div>
     <div class="pin-sub">Ingresá tu PIN de 4 dígitos</div>
     <div class="pin-dots">
-      <div class="pin-dot" id="pd0"></div>
-      <div class="pin-dot" id="pd1"></div>
-      <div class="pin-dot" id="pd2"></div>
-      <div class="pin-dot" id="pd3"></div>
+      <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
     </div>
     <div class="pin-pad">
-      <button class="pin-btn" onclick="pinKey('1')">1</button>
-      <button class="pin-btn" onclick="pinKey('2')">2</button>
-      <button class="pin-btn" onclick="pinKey('3')">3</button>
-      <button class="pin-btn" onclick="pinKey('4')">4</button>
-      <button class="pin-btn" onclick="pinKey('5')">5</button>
-      <button class="pin-btn" onclick="pinKey('6')">6</button>
-      <button class="pin-btn" onclick="pinKey('7')">7</button>
-      <button class="pin-btn" onclick="pinKey('8')">8</button>
-      <button class="pin-btn" onclick="pinKey('9')">9</button>
-      <button class="pin-btn" onclick="pinKey('')"></button>
-      <button class="pin-btn" onclick="pinKey('0')">0</button>
-      <button class="pin-btn del" onclick="pinDel()">⌫</button>
+      <button class="pin-btn" onclick="pk('1')">1</button><button class="pin-btn" onclick="pk('2')">2</button><button class="pin-btn" onclick="pk('3')">3</button>
+      <button class="pin-btn" onclick="pk('4')">4</button><button class="pin-btn" onclick="pk('5')">5</button><button class="pin-btn" onclick="pk('6')">6</button>
+      <button class="pin-btn" onclick="pk('7')">7</button><button class="pin-btn" onclick="pk('8')">8</button><button class="pin-btn" onclick="pk('9')">9</button>
+      <button class="pin-btn" onclick="pk('')"></button><button class="pin-btn" onclick="pk('0')">0</button><button class="pin-btn del" onclick="pd()">⌫</button>
     </div>
     <div class="pin-error" id="pin-error"></div>
   </div>
@@ -146,59 +185,60 @@ input:focus,select:focus{border-color:var(--blue)}
 
 <div id="toast"></div>
 
-<!-- ══════════ APP ══════════ -->
+<!-- APP -->
 <div id="app" style="display:none">
-
 <div class="topbar">
-  <div class="topbar-logo">CFO <span>Familiar</span></div>
+  <div class="tlogo">CFO <span>Familiar</span></div>
   <div class="vtoggle">
-    <button class="vbtn active" onclick="setVista('fer',this)">Fer</button>
-    <button class="vbtn" onclick="setVista('adri',this)">Adri</button>
+    <button class="vbtn active" onclick="setV('fer',this)">Fer</button>
+    <button class="vbtn" onclick="setV('adri',this)">Adri</button>
   </div>
-  <button class="sync-btn" onclick="sincronizar()" title="Sincronizar con Sheets">
-    <span class="sync-dot" id="sync-dot"></span><span id="sync-txt">Sincronizado</span>
-  </button>
+  <div class="sync-area">
+    <button class="sync-btn" onclick="syncAll()"><span class="sdot" id="sdot"></span><span id="stxt">Sync</span></button>
+  </div>
 </div>
 
-<!-- VISTA FER -->
+<!-- ══════ VISTA FER ══════ -->
 <div id="vista-fer" class="vista active">
   <div class="tabs">
-    <button class="tab active" onclick="setTab(this,'resumen')">Resumen</button>
-    <button class="tab" onclick="setTab(this,'calc')">Calculadora</button>
-    <button class="tab" onclick="setTab(this,'deudas')">Deudas</button>
-    <button class="tab" onclick="setTab(this,'proj')">Proyección</button>
+    <button class="tab active" onclick="setT(this,'resumen')">Resumen</button>
+    <button class="tab" onclick="setT(this,'recurrentes')">Recurrentes</button>
+    <button class="tab" onclick="setT(this,'calc')">Calc</button>
+    <button class="tab" onclick="setT(this,'deudas')">Deudas</button>
+    <button class="tab" onclick="setT(this,'proj')">Proyección</button>
   </div>
 
+  <!-- RESUMEN -->
   <div id="pane-resumen">
     <div id="alert-main"></div>
     <div class="mg">
-      <div class="metric m-green"><div class="metric-label">Ingresos</div><div class="metric-value" id="sum-ing">—</div><div class="metric-sub">Gs. del mes</div></div>
-      <div class="metric m-red"><div class="metric-label">Cuotas</div><div class="metric-value" id="sum-cuotas">—</div><div class="metric-sub">Préstamos activos</div></div>
-      <div class="metric m-amber"><div class="metric-label">Fijos hogar</div><div class="metric-value" id="sum-fijos">—</div><div class="metric-sub">Gs. estimados</div></div>
-      <div class="metric" id="metric-flujo"><div class="metric-label">Flujo libre</div><div class="metric-value" id="sum-flujo">—</div><div class="metric-sub">antes de variables</div></div>
+      <div class="metric m-green"><div class="mlabel">Ingresos</div><div class="mval" id="sum-ing">—</div><div class="msub">Gs. del mes</div></div>
+      <div class="metric m-red"><div class="mlabel">Cuotas</div><div class="mval" id="sum-cuotas">—</div><div class="msub">Préstamos</div></div>
+      <div class="metric m-amber"><div class="mlabel">Fijos hogar</div><div class="mval" id="sum-fijos">—</div><div class="msub">Estimados</div></div>
+      <div class="metric" id="mf"><div class="mlabel">Flujo libre</div><div class="mval" id="sum-flujo">—</div><div class="msub">antes variables</div></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--green)"></span>Ingresos del mes <span class="hint">← tocá para editar</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Ingresos <span style="font-size:9px;color:#94a3b8;text-transform:none;letter-spacing:0;font-weight:400;margin-left:4px">← tocá para editar</span></div>
       <div class="trow"><span class="tl">Salario fijo neto (Fer)</span><input class="en" id="v-fijo" value="22000000" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Comisión variable (Fer)</span><input class="en" id="v-comision" value="10361000" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Ingreso extra Fer</span><input class="en" id="v-extra-fer" value="7000000" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Ingreso Adri</span><input class="en" id="v-adri" value="2000000" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Ingreso extra Adri</span><input class="en" id="v-extra-adri" value="0" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total ingresos</span><span class="tv pos" id="r-ing-total">—</span></div>
+      <div class="trow ttotal"><span class="tl">Total ingresos</span><span class="tv pos" id="r-ing">—</span></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--red)"></span>Cuotas de préstamos <span class="hint">← editables</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas préstamos</div>
       <div class="trow"><span class="tl">Banco Familiar (vehículo)</span><input class="en neg" id="v-familiar" value="6506018" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Itaú Préstamo Personal</span><input class="en neg" id="v-itau-p" value="6967118" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Itaú Préstamo Electrónico</span><input class="en neg" id="v-itau-e" value="778226" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Diesa Adri — BYD (USD 320)</span><input class="en neg" id="v-diesa" value="2432000" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total cuotas</span><span class="tv neg" id="r-cuotas-total">—</span></div>
+      <div class="trow ttotal"><span class="tl">Total cuotas</span><span class="tv neg" id="r-cuotas">—</span></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--amber)"></span>Gastos fijos del hogar <span class="hint">← todos editables</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Gastos fijos hogar <span style="font-size:9px;color:#94a3b8;text-transform:none;letter-spacing:0;font-weight:400;margin-left:4px">← editables</span></div>
       <div class="slabel">Personal</div>
       <div class="trow"><span class="tl">Niñera semana</span><input class="en neg" id="v-n1" value="2500000" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Niñera finde</span><input class="en neg" id="v-n2" value="1600000" oninput="recalc()"></div>
@@ -227,108 +267,137 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="trow"><span class="tl">Hogar</span><input class="en neg" id="v-hogar" value="0" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Mila Actis</span><input class="en neg" id="v-mila" value="0" oninput="recalc()"></div>
       <div class="trow"><span class="tl">Cala Actis</span><input class="en neg" id="v-cala" value="0" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total fijos hogar</span><span class="tv neg" id="r-fijos-total">—</span></div>
+      <div class="trow ttotal"><span class="tl">Total fijos hogar</span><span class="tv neg" id="r-fijos">—</span></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--blue)"></span>Gastos variables del mes</div>
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Gastos variables del mes</div>
       <div id="vars-fer"><div class="trow"><span class="tl" style="font-style:italic">Sin gastos cargados</span></div></div>
-      <div class="trow ttotal"><span class="tl">Total variables</span><span class="tv neg" id="r-var-total">0 Gs.</span></div>
+      <div class="trow ttotal"><span class="tl">Total variables</span><span class="tv neg" id="r-vars">0 Gs.</span></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--navy)"></span>Resultado del mes</div>
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Resultado del mes</div>
       <div class="trow"><span class="tl">Ingresos</span><span class="tv pos" id="res-ing">—</span></div>
       <div class="trow"><span class="tl">Cuotas préstamos</span><span class="tv neg" id="res-cuotas">—</span></div>
       <div class="trow"><span class="tl">Gastos fijos hogar</span><span class="tv neg" id="res-fijos">—</span></div>
-      <div class="trow"><span class="tl">Gastos variables</span><span class="tv neg" id="res-vars">0 Gs.</span></div>
+      <div class="trow"><span class="tl">Gastos variables</span><span class="tv neg" id="res-varst">0 Gs.</span></div>
       <div class="trow ttotal"><span class="tl">Flujo neto</span><span class="tv" id="res-flujo">—</span></div>
     </div>
   </div>
 
-  <div id="pane-calc" style="display:none">
-    <div class="alerta a-blue">Todos los valores son editables en tiempo real. Los cambios en el Resumen se reflejan aquí instantáneamente.</div>
+  <!-- RECURRENTES -->
+  <div id="pane-recurrentes" style="display:none">
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--blue)"></span>Tipo de cambio USD → Gs.</div>
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Progreso del mes</div>
+      <div class="rec-progress">
+        <div class="rec-prog-bar"><div class="rec-prog-fill" id="rec-bar" style="width:0%"></div></div>
+        <div class="rec-stats"><span id="rec-done-count">0 pagados</span><span id="rec-done-monto">0 Gs. abonados</span><button class="rec-reset-btn" onclick="resetRec()">↺ Resetear mes</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas de préstamos — débito automático</div>
+      <div id="rec-list-prestamos"></div>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Gastos fijos del hogar — transferencia / débito</div>
+      <div id="rec-list-hogar"></div>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Servicios y seguros — débito automático</div>
+      <div id="rec-list-servicios"></div>
+    </div>
+  </div>
+
+  <!-- CALC -->
+  <div id="pane-calc" style="display:none">
+    <div class="alerta a-blue" style="font-size:12px">Todos los valores del Resumen son editables. Acá simulás escenarios y ajustás el tipo de cambio.</div>
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Tipo de cambio USD → Gs.</div>
       <div class="trow"><span class="tl">TC referencial</span><input class="en" id="v-tc" value="7600" oninput="recalcDiesa()" style="color:var(--blue)"></div>
       <div class="trow"><span class="tl">Cuota Diesa en USD</span><input class="en" id="v-dusd" value="320" oninput="recalcDiesa()" style="color:var(--blue)"></div>
-      <div class="trow ttotal"><span class="tl">Cuota Diesa en Gs. (auto)</span><span class="tv neg" id="v-dcalc">2.432.000 Gs.</span></div>
+      <div class="trow ttotal"><span class="tl">Cuota en Gs. (auto)</span><span class="tv neg" id="v-dcalc">2.432.000 Gs.</span></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--navy)"></span>Simulador en tiempo real</div>
-      <div class="trow"><span class="tl" style="font-weight:500">Ingresos totales</span><span class="tv pos" id="c-ing">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Cuotas préstamos</span><span class="tv neg" id="c-cuotas">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Gastos fijos hogar</span><span class="tv neg" id="c-fijos">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Gastos variables</span><span class="tv neg" id="c-vars">—</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Flujo en tiempo real</div>
+      <div class="trow"><span class="tl" style="font-weight:500">Ingresos</span><span class="tv pos" id="c-ing">—</span></div>
+      <div class="trow"><span class="tl" style="font-weight:500">Cuotas</span><span class="tv neg" id="c-cuotas">—</span></div>
+      <div class="trow"><span class="tl" style="font-weight:500">Fijos hogar</span><span class="tv neg" id="c-fijos">—</span></div>
+      <div class="trow"><span class="tl" style="font-weight:500">Variables</span><span class="tv neg" id="c-vars">—</span></div>
       <div class="trow ttotal"><span class="tl">Flujo neto</span><span class="tv" id="c-flujo">—</span></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--amber)"></span>Escenarios rápidos</div>
-      <div class="esc-grid">
-        <button class="btn-primary" style="background:#15803d;margin:0" onclick="esc('sin-comision')">Sin comisión</button>
-        <button class="btn-primary" style="background:#2563eb;margin:0" onclick="esc('con-comision')">Con comisión</button>
-        <button class="btn-primary" style="background:#d97706;margin:0" onclick="esc('solo-fijo')">Solo salario</button>
-        <button class="btn-primary" style="margin:0" onclick="esc('reset')">↺ Valores reales</button>
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Escenarios rápidos</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+        <button class="btn" style="background:#15803d;margin:0;font-size:12px" onclick="esc('sin-comision')">Sin comisión</button>
+        <button class="btn" style="background:#2563eb;margin:0;font-size:12px" onclick="esc('con-comision')">Con comisión</button>
+        <button class="btn" style="background:#d97706;margin:0;font-size:12px" onclick="esc('solo-fijo')">Solo salario</button>
+        <button class="btn" style="margin:0;font-size:12px" onclick="esc('reset')">↺ Valores reales</button>
       </div>
     </div>
   </div>
 
+  <!-- DEUDAS -->
   <div id="pane-deudas" style="display:none">
     <div class="mg">
-      <div class="metric m-red"><div class="metric-label">Préstamos</div><div class="metric-value">770,2M</div><div class="metric-sub">Gs. saldo total</div></div>
-      <div class="metric m-red"><div class="metric-label">Tarjetas</div><div class="metric-value">80,3M</div><div class="metric-sub">Amex + Visa</div></div>
-      <div class="metric m-red"><div class="metric-label">Pasivo total</div><div class="metric-value">850,5M</div><div class="metric-sub">Gs. actualizado</div></div>
-      <div class="metric m-amber"><div class="metric-label">Cuota / mes</div><div class="metric-value" id="d-cuota">—</div><div class="metric-sub">Préstamos activos</div></div>
+      <div class="metric m-red"><div class="mlabel">Préstamos</div><div class="mval">770,2M</div><div class="msub">Gs. saldo</div></div>
+      <div class="metric m-red"><div class="mlabel">Tarjetas</div><div class="mval">80,3M</div><div class="msub">Amex + Visa</div></div>
+      <div class="metric m-red"><div class="mlabel">Pasivo total</div><div class="mval">850,5M</div><div class="msub">Gs.</div></div>
+      <div class="metric m-amber"><div class="mlabel">Cuota / mes</div><div class="mval" id="d-cuota">—</div><div class="msub">Préstamos</div></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--red)"></span>Préstamos activos</div>
-      <div class="ditem"><div><div class="dname">Banco Familiar — Automóviles</div><div class="ddetail">409,3M total · 8,9% aa · 49 cuotas · Cancela may/2030</div><div class="prog-wrap"><div class="prog-label"><span>Amortizado</span><span>18%</span></div><div class="prog-track"><div class="prog-fill" style="width:18%;background:var(--green)"></div></div></div><span class="badge b-red">Mayor deuda</span></div><div><div class="dsaldo">334,2M</div><div class="dcuota">~6.506.018 Gs./mes</div></div></div>
-      <div class="ditem"><div><div class="dname">Itaú Préstamo Personal nº91177291</div><div class="ddetail">246,4M · 13,9% · 41 cuotas · Cancela sept/2029</div><div class="prog-wrap"><div class="prog-label"><span>Amortizado</span><span>12%</span></div><div class="prog-track"><div class="prog-fill" style="width:12%;background:var(--amber)"></div></div></div></div><div><div class="dsaldo">217,9M</div><div class="dcuota">6.967.118 Gs./mes</div></div></div>
-      <div class="ditem"><div><div class="dname">Itaú Préstamo Electrónico nº91194146</div><div class="ddetail">24,7M · 19,5% (tasa más alta) · 42 cuotas · Cancela abr/2030</div><div class="prog-wrap"><div class="prog-label"><span>Amortizado</span><span>9%</span></div><div class="prog-track"><div class="prog-fill" style="width:9%;background:var(--red)"></div></div></div><span class="badge b-amber">Tasa más alta</span></div><div><div class="dsaldo">22,4M</div><div class="dcuota">778.226 Gs./mes</div></div></div>
-      <div class="ditem"><div><div class="dname">Diesa Adri — BYD Yuan Pro (SOLFRIO)</div><div class="ddetail">USD 26.390 · 44 cuotas · USD 320/mes · Cancela nov/2029</div><div class="prog-wrap"><div class="prog-label"><span>Amortizado</span><span>2%</span></div><div class="prog-track"><div class="prog-fill" style="width:2%;background:var(--red)"></div></div></div><span class="badge b-blue">En USD — varía con TC</span></div><div><div class="dsaldo">~195,8M</div><div class="dcuota">~2.432.000 Gs./mes</div></div></div>
+      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Préstamos activos</div>
+      <div class="ditem"><div><div class="dname">Banco Familiar — Automóviles</div><div class="ddetail">409,3M total · 8,9% aa · 49 cuotas · may/2030</div><div class="pbar"><div class="pbar-top"><span>Amortizado</span><span>18%</span></div><div class="ptrack"><div class="pfill" style="width:18%;background:var(--green)"></div></div></div><span class="badge b-red">Mayor deuda</span></div><div><div class="dsaldo">334,2M</div><div class="dcuota">~6.506.018 Gs./mes</div></div></div>
+      <div class="ditem"><div><div class="dname">Itaú Préstamo Personal nº91177291</div><div class="ddetail">246,4M · 13,9% · 41 cuotas · sept/2029</div><div class="pbar"><div class="pbar-top"><span>Amortizado</span><span>12%</span></div><div class="ptrack"><div class="pfill" style="width:12%;background:var(--amber)"></div></div></div></div><div><div class="dsaldo">217,9M</div><div class="dcuota">6.967.118 Gs./mes</div></div></div>
+      <div class="ditem"><div><div class="dname">Itaú Préstamo Electrónico nº91194146</div><div class="ddetail">24,7M · 19,5% · 42 cuotas · abr/2030</div><div class="pbar"><div class="pbar-top"><span>Amortizado</span><span>9%</span></div><div class="ptrack"><div class="pfill" style="width:9%;background:var(--red)"></div></div></div><span class="badge b-amber">Tasa más alta</span></div><div><div class="dsaldo">22,4M</div><div class="dcuota">778.226 Gs./mes</div></div></div>
+      <div class="ditem"><div><div class="dname">Diesa Adri — BYD Yuan Pro</div><div class="ddetail">USD 26.390 · 44 cuotas · USD 320/mes · nov/2029</div><div class="pbar"><div class="pbar-top"><span>Amortizado</span><span>2%</span></div><div class="ptrack"><div class="pfill" style="width:2%;background:var(--red)"></div></div></div><span class="badge b-blue">En USD</span></div><div><div class="dsaldo">~195,8M</div><div class="dcuota">~2.432.000 Gs./mes</div></div></div>
     </div>
-    <div class="alerta a-red"><strong>⚠ Cuota balón nov/2029:</strong> USD 10.000 (~76M Gs. al TC actual). Planificá con anticipación.</div>
+    <div class="alerta a-red" style="font-size:12px"><strong>⚠ Cuota balón nov/2029:</strong> USD 10.000 (~76M Gs.). Separar ~2M Gs./mes desde ahora.</div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--amber)"></span>Tarjetas de crédito</div>
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Tarjetas de crédito</div>
       <div class="tc-grid">
-        <div class="tc-card"><div class="tc-name">Amex Platinum</div><div class="tc-num">····3001 · Itaú</div><div class="tc-deuda">76,1M Gs.</div><div class="tc-venc">Cierre 18/05 · Vence 04/06/2026</div><div style="margin-top:6px"><span class="badge b-red">Prioridad</span></div></div>
-        <div class="tc-card"><div class="tc-name">Visa Interventajas</div><div class="tc-num">····7311 · Itaú</div><div class="tc-deuda">4,1M Gs.</div><div class="tc-venc">Cierre 18/05 · Vence 04/06/2026</div><div style="margin-top:6px"><span class="badge b-gray">Uso corriente</span></div></div>
+        <div class="tc-card"><div class="tc-name">Amex Platinum</div><div class="tc-num">····3001 · Itaú</div><div class="tc-deuda">76,1M Gs.</div><div class="tc-venc">Cierre 18/05 · Vence 04/06</div><div style="margin-top:5px"><span class="badge b-red">Prioridad</span></div></div>
+        <div class="tc-card"><div class="tc-name">Visa Interventajas</div><div class="tc-num">····7311 · Itaú</div><div class="tc-deuda">4,1M Gs.</div><div class="tc-venc">Cierre 18/05 · Vence 04/06</div><div style="margin-top:5px"><span class="badge b-gray">Uso corriente</span></div></div>
       </div>
     </div>
-    <div class="alerta a-amber"><strong>CDA vence 14/09/2026</strong> — 5.000.000 Gs. al 9%. Destino recomendado: pago capital Itaú Electrónico (tasa 19,5%).</div>
+    <div class="alerta a-amber" style="font-size:12px"><strong>CDA vence 14/09/2026</strong> — 5M Gs. al 9%. Destino: pago capital Itaú Electrónico (19,5%).</div>
   </div>
 
+  <!-- PROYECCIÓN -->
   <div id="pane-proj" style="display:none">
-    <div class="alerta a-amber" id="proj-alert"></div>
+    <div class="alerta a-amber" id="proj-alert" style="font-size:12px"></div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--navy)"></span>Cuotas proyectadas por año</div>
-      <div style="overflow-x:auto"><table class="ptable"><thead><tr><th>Año</th><th>Familiar</th><th>Itaú Pers.</th><th>Itaú Elec.</th><th>Diesa</th><th>Total</th><th>Flujo base</th></tr></thead><tbody id="proj-body"></tbody></table></div>
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Cuotas proyectadas por año</div>
+      <div style="overflow-x:auto"><table class="ptable"><thead><tr><th>Año</th><th>Familiar</th><th>Itaú P.</th><th>Itaú E.</th><th>Diesa</th><th>Total</th><th>Flujo</th></tr></thead><tbody id="proj-body"></tbody></table></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--green)"></span>Flujo que se libera al cancelar</div>
-      <div class="trow"><span class="tl">Sept 2029 — cancela Itaú Personal</span><span class="tv pos">+6.967.118 Gs./mes</span></div>
-      <div class="trow"><span class="tl">Nov 2029 — cancela Diesa Adri</span><span class="tv pos">+2.432.000 Gs./mes</span></div>
-      <div class="trow"><span class="tl">Abr 2030 — cancela Itaú Electrónico</span><span class="tv pos">+778.226 Gs./mes</span></div>
-      <div class="trow"><span class="tl">May 2030 — cancela Banco Familiar</span><span class="tv pos">+6.506.018 Gs./mes</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Flujo liberado al cancelar</div>
+      <div class="trow"><span class="tl">Sept 2029 — cancela Itaú Personal</span><span class="tv pos">+6.967.118</span></div>
+      <div class="trow"><span class="tl">Nov 2029 — cancela Diesa Adri</span><span class="tv pos">+2.432.000</span></div>
+      <div class="trow"><span class="tl">Abr 2030 — cancela Itaú Electrónico</span><span class="tv pos">+778.226</span></div>
+      <div class="trow"><span class="tl">May 2030 — cancela Banco Familiar</span><span class="tv pos">+6.506.018</span></div>
       <div class="trow ttotal"><span class="tl">Total liberado desde 2031</span><span class="tv pos">+16.683.362 Gs./mes</span></div>
     </div>
   </div>
 </div>
 
-<!-- VISTA ADRI -->
+<!-- ══════ VISTA ADRI ══════ -->
 <div id="vista-adri" class="vista">
   <div class="tabs">
-    <button class="tab active" onclick="setTabA(this,'cargar')">Cargar gasto</button>
-    <button class="tab" onclick="setTabA(this,'gastos')">Mis gastos</button>
-    <button class="tab" onclick="setTabA(this,'flujo')">Flujo</button>
+    <button class="tab active" onclick="setTA(this,'cargar')">Cargar gasto</button>
+    <button class="tab" onclick="setTA(this,'gastos')">Mis gastos</button>
+    <button class="tab" onclick="setTA(this,'flujo')">Flujo</button>
   </div>
 
   <div id="adri-cargar">
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--blue)"></span>Registrar gasto</div>
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Registrar gasto</div>
       <div class="fgrid">
         <div class="fg"><label>Fecha</label><input type="date" id="g-fecha"></div>
-        <div class="fg"><label>Monto (Gs.)</label><input type="number" id="g-monto" placeholder="Ej: 85000"></div>
+        <div class="fg"><label>Monto (Gs.)</label><input type="number" id="g-monto" placeholder="Ej: 85000" inputmode="numeric"></div>
         <div class="fg full"><label>Descripción</label><input type="text" id="g-desc" placeholder="Ej: Farmacia, Nafta, Ropa niños"></div>
         <div class="fg"><label>Categoría</label>
           <select id="g-cat"><option value="">Seleccionar...</option><option>Supermercado</option><option>Auto / transporte</option><option>Salud / farmacia</option><option>Restaurantes / salidas</option><option>Ropa / personal</option><option>Suscripciones digitales</option><option>Educación extra</option><option>Hogar / mantenimiento</option><option>Ocio / regalos</option><option>Otros</option></select>
@@ -341,32 +410,32 @@ input:focus,select:focus{border-color:var(--blue)}
         </div>
         <div class="fg full"><label>Notas (opcional)</label><input type="text" id="g-notas" placeholder="Algún detalle..."></div>
       </div>
-      <button class="btn-primary" onclick="cargarGasto()">Registrar gasto</button>
+      <button class="btn" onclick="cargarGasto()">Registrar gasto</button>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--amber)"></span>Últimos registros</div>
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Últimos registros</div>
       <div id="adri-ult"><div class="trow"><span class="tl" style="font-style:italic">Sin gastos aún</span></div></div>
     </div>
   </div>
 
   <div id="adri-gastos" style="display:none">
     <div class="mg">
-      <div class="metric m-amber"><div class="metric-label">Total gastado</div><div class="metric-value" id="a-total">0</div><div class="metric-sub">Este mes</div></div>
-      <div class="metric"><div class="metric-label">Operaciones</div><div class="metric-value" id="a-count">0</div><div class="metric-sub">Registradas</div></div>
+      <div class="metric m-amber"><div class="mlabel">Total gastado</div><div class="mval" id="a-total">0</div><div class="msub">Este mes</div></div>
+      <div class="metric"><div class="mlabel">Operaciones</div><div class="mval" id="a-count">0</div><div class="msub">Registradas</div></div>
     </div>
-    <div class="card"><div class="card-title"><span class="dot" style="background:var(--blue)"></span>Por categoría</div><div id="a-bycat"><div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div></div></div>
-    <div class="card"><div class="card-title"><span class="dot" style="background:var(--amber)"></span>Por medio de pago</div><div id="a-bymedio"><div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div></div></div>
-    <div class="card"><div class="card-title"><span class="dot" style="background:var(--gray)"></span>Todos los gastos</div><div id="a-lista"><div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div></div></div>
+    <div class="card"><div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Por categoría</div><div id="a-bycat"><div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div></div></div>
+    <div class="card"><div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Por medio de pago</div><div id="a-bymedio"><div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div></div></div>
+    <div class="card"><div class="ctitle"><span class="dot" style="background:var(--gray)"></span>Todos los gastos</div><div id="a-lista"><div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div></div></div>
   </div>
 
   <div id="adri-flujo" style="display:none">
     <div id="adri-alert"></div>
     <div class="mg">
-      <div class="metric m-green"><div class="metric-label">Ingresos</div><div class="metric-value" id="af-ing">—</div><div class="metric-sub">Gs. del mes</div></div>
-      <div class="metric m-red"><div class="metric-label">Compromisos</div><div class="metric-value" id="af-comp">—</div><div class="metric-sub">Cuotas + fijos</div></div>
+      <div class="metric m-green"><div class="mlabel">Ingresos</div><div class="mval" id="af-ing">—</div><div class="msub">Del mes</div></div>
+      <div class="metric m-red"><div class="mlabel">Compromisos</div><div class="mval" id="af-comp">—</div><div class="msub">Cuotas + fijos</div></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--navy)"></span>Resumen del mes</div>
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Resumen del mes</div>
       <div class="trow"><span class="tl">Ingresos totales</span><span class="tv pos" id="af-ing2">—</span></div>
       <div class="trow"><span class="tl">Cuotas préstamos</span><span class="tv neg" id="af-cuotas">—</span></div>
       <div class="trow"><span class="tl">Gastos fijos hogar</span><span class="tv neg" id="af-fijos">—</span></div>
@@ -379,131 +448,210 @@ input:focus,select:focus{border-color:var(--blue)}
 
 <script>
 // ══════════════════════════════════════════
-// CONFIGURACIÓN — CAMBIAR ESTOS DOS VALORES
+// CONFIG
 // ══════════════════════════════════════════
-const PIN_CORRECTO = "2374"; // ← Cambiá por tu PIN de 4 dígitos
-const API_URL = "https://script.google.com/macros/s/AKfycbwS7trjSlpLo9mXryh2WDak0cHDrWA367_Aon80WoT_oP1cpqavpzsc-9K6AYzTLqleGQ/exec"; // ← URL del Apps Script desplegado
+const PIN = "2374";
+const API = "https://script.google.com/macros/s/AKfycbwS7trjSlpLo9mXryh2WDak0cHDrWA367_Aon80WoT_oP1cpqavpzsc-9K6AYzTLqleGQ/exec";
+const GKEY = 'cfo_gastos_v5';
+const RKEY = 'cfo_rec_v5';
+
+// ══════════════════════════════════════════
+// RECURRENTES — definición completa
+// ══════════════════════════════════════════
+const REC_PRESTAMOS = [
+  { id:'r-familiar',  label:'Banco Familiar (vehículo)',       monto:6506018, medio:'Débito automático Itaú' },
+  { id:'r-itau-p',    label:'Itaú Préstamo Personal',          monto:6967118, medio:'Débito automático Itaú' },
+  { id:'r-itau-e',    label:'Itaú Préstamo Electrónico',       monto:778226,  medio:'Débito automático Itaú' },
+  { id:'r-diesa',     label:'Diesa Adri — BYD (USD 320)',      monto:2432000, medio:'Débito automático' },
+];
+const REC_HOGAR = [
+  { id:'r-alquiler',  label:'Alquiler',                        monto:4700000, medio:'Transferencia Itaú' },
+  { id:'r-ninera1',   label:'Niñera semana',                   monto:2500000, medio:'Transferencia Itaú' },
+  { id:'r-ninera2',   label:'Niñera finde',                    monto:1600000, medio:'Transferencia Itaú' },
+  { id:'r-empleada',  label:'Empleada',                        monto:2600000, medio:'Transferencia Itaú' },
+  { id:'r-colegio',   label:'Colegio / guardería',             monto:2350000, medio:'TC Sudameris (débito auto)' },
+  { id:'r-super-gnb', label:'Super GNB (TC)',                  monto:2500000, medio:'TC GNB' },
+  { id:'r-super-itau',label:'Super Itaú (TC)',                 monto:2500000, medio:'TC Itaú Fer' },
+  { id:'r-ande',      label:'ANDE / ESSAP',                    monto:900000,  medio:'Transferencia Itaú' },
+];
+const REC_SERVICIOS = [
+  { id:'r-internet',  label:'Internet Claro',                  monto:230000,  medio:'Cuenta Itaú conjunta' },
+  { id:'r-tigo',      label:'Tigo TV + Internet',              monto:300000,  medio:'Cuenta Itaú conjunta' },
+  { id:'r-agua',      label:'Agua / Culligan',                 monto:150000,  medio:'Débito automático Itaú' },
+  { id:'r-sauto',     label:'Seguro auto',                     monto:680000,  medio:'Débito automático Itaú' },
+  { id:'r-shogar',    label:'Seguro hogar',                    monto:140000,  medio:'TD Ueno Bank (débito auto)' },
+  { id:'r-cit',       label:'CIT',                             monto:390000,  medio:'Débito automático Itaú' },
+  { id:'r-protek',    label:'PROTEK',                          monto:240000,  medio:'Débito automático Itaú' },
+];
+const ALL_REC = [...REC_PRESTAMOS, ...REC_HOGAR, ...REC_SERVICIOS];
+
+// Estado de recurrentes (persiste en localStorage)
+let recState = JSON.parse(localStorage.getItem(RKEY) || '{}');
 
 // ══════════════════════════════════════════
 // PIN
 // ══════════════════════════════════════════
-let pinBuffer = "";
-function pinKey(d) {
-  if (!d || pinBuffer.length >= 4) return;
-  pinBuffer += d;
-  for (let i=0;i<4;i++) document.getElementById('pd'+i).className='pin-dot'+(i<pinBuffer.length?' filled':'');
-  if (pinBuffer.length === 4) {
+let pinBuf = "";
+function pk(d) {
+  if (!d || pinBuf.length >= 4) return;
+  pinBuf += d;
+  for(let i=0;i<4;i++) document.getElementById('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');
+  if (pinBuf.length === 4) {
     setTimeout(() => {
-      if (pinBuffer === PIN_CORRECTO) {
-        document.getElementById('pin-screen').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
-        cargarDesdeSheets();
+      if (pinBuf === PIN) {
+        document.getElementById('pin-screen').style.display='none';
+        document.getElementById('app').style.display='block';
+        init();
       } else {
-        document.getElementById('pin-error').textContent = "PIN incorrecto. Intentá de nuevo.";
-        pinBuffer = "";
-        for (let i=0;i<4;i++) document.getElementById('pd'+i).className='pin-dot';
-        for (let i=0;i<4;i++) { const d=document.getElementById('pd'+i); d.style.background='#ef4444'; setTimeout(()=>d.style.background='',600); }
+        document.getElementById('pin-error').textContent='PIN incorrecto';
+        pinBuf="";
+        for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);d.className='pin-dot';d.style.background='#ef4444';setTimeout(()=>d.style.background='',500)}
       }
-    }, 200);
+    },180);
   }
 }
-function pinDel() {
-  if (pinBuffer.length > 0) {
-    pinBuffer = pinBuffer.slice(0,-1);
-    for (let i=0;i<4;i++) document.getElementById('pd'+i).className='pin-dot'+(i<pinBuffer.length?' filled':'');
-    document.getElementById('pin-error').textContent='';
-  }
-}
-document.addEventListener('keydown', e => {
-  if (document.getElementById('pin-screen').style.display==='none') return;
-  if (e.key>='0'&&e.key<='9') pinKey(e.key);
-  else if (e.key==='Backspace') pinDel();
-});
+function pd(){if(pinBuf.length>0){pinBuf=pinBuf.slice(0,-1);for(let i=0;i<4;i++)document.getElementById('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');document.getElementById('pin-error').textContent=''}}
+document.addEventListener('keydown',e=>{if(document.getElementById('pin-screen').style.display==='none')return;if(e.key>='0'&&e.key<='9')pk(e.key);else if(e.key==='Backspace')pd()});
 
 // ══════════════════════════════════════════
 // ESTADO
 // ══════════════════════════════════════════
-let gastos = JSON.parse(localStorage.getItem('cfo_gastos_v4')||'[]');
-
+let gastos = JSON.parse(localStorage.getItem(GKEY)||'[]');
 const gs = n => Math.round(n).toLocaleString('es-PY')+' Gs.';
 const M  = n => { const v=Math.abs(n/1e6); return(n<0?'-':n>0?'+':'')+v.toFixed(1)+'M'; };
 const $  = id => document.getElementById(id);
 const v  = id => Math.abs(parseFloat($(id)?.value)||0);
-const txt= (id,t)=>{ const e=$(id); if(e) e.textContent=t; };
-
+const txt= (id,t) => { const e=$(id); if(e) e.textContent=t; };
 const ING=['v-fijo','v-comision','v-extra-fer','v-adri','v-extra-adri'];
 const CUO=['v-familiar','v-itau-p','v-itau-e','v-diesa'];
 const FIJ=['v-n1','v-n2','v-empleada','v-ips','v-alquiler','v-colegio','v-gnb','v-sitau','v-ande','v-internet','v-tigo','v-agua','v-sauto','v-shogar','v-cit','v-protek','v-neot','v-ahorro','v-imprev','v-hogar','v-mila','v-cala'];
-
-const S = ids => ids.reduce((s,id)=>s+v(id),0);
+const S  = ids => ids.reduce((s,id)=>s+v(id),0);
 const varTotal = () => gastos.reduce((s,g)=>s+g.monto,0);
 
 // ══════════════════════════════════════════
 // SHEETS API
 // ══════════════════════════════════════════
-function setSyncState(state) {
-  const dot=$('sync-dot'), txt=$('sync-txt');
-  if (state==='loading'){dot.className='sync-dot loading';txt.textContent='Sincronizando...'}
-  else if(state==='ok'){dot.className='sync-dot';txt.textContent='Sincronizado'}
-  else{dot.className='sync-dot error';txt.textContent='Sin conexión'}
+function setSS(state){
+  const d=$('sdot'),t=$('stxt');
+  if(state==='loading'){d.className='sdot spin';t.textContent='Sync...'}
+  else if(state==='ok'){d.className='sdot';t.textContent='Sync'}
+  else{d.className='sdot err';t.textContent='Error'}
 }
 
-async function cargarDesdeSheets() {
-  if (API_URL.includes('PEGAR_URL')) { recalc(); renderAdri(); return; }
-  setSyncState('loading');
-  try {
-    const r = await fetch(API_URL+'?accion=gastos');
-    const d = await r.json();
-    if (d.ok) {
-      gastos = d.gastos.map(g=>({...g, id:Number(g.id), monto:Number(g.monto)}));
-      localStorage.setItem('cfo_gastos_v4', JSON.stringify(gastos));
-    }
-    setSyncState('ok');
-  } catch(e) { setSyncState('error'); }
-  recalc(); renderAdri();
+async function apiGet(accion){
+  try{
+    const r=await fetch(API+'?accion='+accion);
+    return await r.json();
+  }catch(e){return{ok:false}}
 }
 
-async function sincronizar() { await cargarDesdeSheets(); toast('Datos actualizados'); }
-
-async function enviarGastoSheets(gasto) {
-  if (API_URL.includes('PEGAR_URL')) return true;
-  try {
-    const r = await fetch(API_URL, {
-      method:'POST',
-      body: JSON.stringify({ accion:'nuevo_gasto', gasto }),
-    });
-    const d = await r.json();
-    return d.ok;
-  } catch(e) { return false; }
+async function apiPost(payload){
+  try{
+    const r=await fetch(API,{method:'POST',body:JSON.stringify(payload)});
+    return await r.json();
+  }catch(e){return{ok:false}}
 }
 
-async function eliminarGastoSheets(id) {
-  if (API_URL.includes('PEGAR_URL')) return true;
-  try {
-    const r = await fetch(API_URL, {
-      method:'POST',
-      body: JSON.stringify({ accion:'eliminar_gasto', id }),
-    });
-    const d = await r.json();
-    return d.ok;
-  } catch(e) { return false; }
+async function cargarGastosSheets(){
+  setSS('loading');
+  const d=await apiGet('gastos');
+  if(d.ok&&d.gastos){
+    gastos=d.gastos.map(g=>({...g,id:Number(g.id),monto:Number(g.monto)}));
+    localStorage.setItem(GKEY,JSON.stringify(gastos));
+    setSS('ok');
+  } else { setSS('err'); }
+}
+
+async function syncAll(){
+  await cargarGastosSheets();
+  recalc(); renderAdri(); renderRecurrentes();
+  toast('Datos actualizados');
+}
+
+// ══════════════════════════════════════════
+// RECURRENTES — RENDER Y LÓGICA
+// ══════════════════════════════════════════
+function renderRecurrentes(){
+  renderRecGroup('rec-list-prestamos', REC_PRESTAMOS);
+  renderRecGroup('rec-list-hogar', REC_HOGAR);
+  renderRecGroup('rec-list-servicios', REC_SERVICIOS);
+  updateRecProgress();
+}
+
+function renderRecGroup(containerId, items){
+  const el=$(containerId);
+  if(!el) return;
+  el.innerHTML = items.map(item => {
+    const done = !!recState[item.id];
+    return `
+    <div class="rec-item" onclick="toggleRec('${item.id}')">
+      <div class="rec-check${done?' done':''}"></div>
+      <div style="flex:1;min-width:0">
+        <div class="rec-label${done?' done':''}">${item.label}</div>
+        <div class="rec-medio">${item.medio}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="rec-monto${done?' done':''}">${gs(item.monto)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleRec(id){
+  recState[id] = !recState[id];
+  localStorage.setItem(RKEY, JSON.stringify(recState));
+  renderRecurrentes();
+  // Guardar en Sheets
+  const item = ALL_REC.find(r=>r.id===id);
+  if(item && recState[id]){
+    const hoy = new Date().toISOString().split('T')[0];
+    const g = {id:Date.now(),fecha:hoy,monto:item.monto,desc:item.label,cat:'Gasto fijo recurrente',medio:item.medio,quien:'Auto',notas:'Recurrente mensual'};
+    gastos.push(g);
+    localStorage.setItem(GKEY,JSON.stringify(gastos));
+    apiPost({accion:'nuevo_gasto',gasto:g});
+    recalc(); renderAdri();
+  }
+  toast(recState[id] ? '✓ Marcado como pagado' : 'Desmarcado');
+}
+
+function updateRecProgress(){
+  const total = ALL_REC.length;
+  const done  = ALL_REC.filter(r=>recState[r.id]).length;
+  const montoTotal = ALL_REC.reduce((s,r)=>s+r.monto,0);
+  const montoDone  = ALL_REC.filter(r=>recState[r.id]).reduce((s,r)=>s+r.monto,0);
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  const bar=$('rec-bar');
+  if(bar) bar.style.width=pct+'%';
+  txt('rec-done-count', done+' / '+total+' pagados');
+  txt('rec-done-monto', gs(montoDone)+' abonados');
+}
+
+function resetRec(){
+  if(!confirm('¿Resetear todos los recurrentes del mes?')) return;
+  recState={};
+  localStorage.setItem(RKEY,JSON.stringify(recState));
+  // Eliminar gastos recurrentes del mes del array local
+  gastos = gastos.filter(g=>g.cat !== 'Gasto fijo recurrente');
+  localStorage.setItem(GKEY,JSON.stringify(gastos));
+  renderRecurrentes(); recalc(); renderAdri();
+  toast('Recurrentes reseteados');
 }
 
 // ══════════════════════════════════════════
 // RECALC
 // ══════════════════════════════════════════
-function recalc() {
+function recalc(){
   const ing=S(ING),cuotas=S(CUO),fijos=S(FIJ),vars=varTotal();
   const flujo=ing-cuotas-fijos-vars;
 
-  $('sum-ing').textContent=M(ing); $('sum-cuotas').textContent=M(cuotas);
-  $('sum-fijos').textContent=M(fijos); $('sum-flujo').textContent=M(flujo);
-  $('metric-flujo').className='metric '+(flujo>=0?'m-green':'m-red');
+  $('sum-ing').textContent=M(ing);$('sum-cuotas').textContent=M(cuotas);
+  $('sum-fijos').textContent=M(fijos);$('sum-flujo').textContent=M(flujo);
+  $('mf').className='metric '+(flujo>=0?'m-green':'m-red');
 
-  txt('r-ing-total',gs(ing)); txt('r-cuotas-total',gs(cuotas));
-  txt('r-fijos-total',gs(fijos)); txt('r-var-total',gs(vars));
-  txt('res-ing',gs(ing)); txt('res-cuotas',gs(cuotas));
-  txt('res-fijos',gs(fijos)); txt('res-vars',gs(vars));
+  txt('r-ing',gs(ing));txt('r-cuotas',gs(cuotas));
+  txt('r-fijos',gs(fijos));txt('r-vars',gs(vars));
+  txt('res-ing',gs(ing));txt('res-cuotas',gs(cuotas));
+  txt('res-fijos',gs(fijos));txt('res-varst',gs(vars));
   $('res-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
   $('res-flujo').className='tv '+(flujo>=0?'pos':'neg');
 
@@ -511,23 +659,24 @@ function recalc() {
     ?`<div class="alerta a-green"><strong>Mes positivo</strong> — hay ${gs(flujo)} de margen.</div>`
     :`<div class="alerta a-red"><strong>Mes en déficit</strong> — faltan ${gs(Math.abs(flujo))}.</div>`;
 
-  txt('c-ing',gs(ing)); txt('c-cuotas',gs(cuotas));
-  txt('c-fijos',gs(fijos)); txt('c-vars',gs(vars));
+  txt('c-ing',gs(ing));txt('c-cuotas',gs(cuotas));
+  txt('c-fijos',gs(fijos));txt('c-vars',gs(vars));
   $('c-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
   $('c-flujo').className='tv '+(flujo>=0?'pos':'neg');
   $('d-cuota').textContent=M(cuotas);
-  $('af-ing').textContent=M(ing); $('af-comp').textContent=M(cuotas+fijos);
-  txt('af-ing2',gs(ing)); txt('af-cuotas',gs(cuotas));
-  txt('af-fijos',gs(fijos)); txt('af-vars',gs(vars));
+
+  $('af-ing').textContent=M(ing);$('af-comp').textContent=M(cuotas+fijos);
+  txt('af-ing2',gs(ing));txt('af-cuotas',gs(cuotas));
+  txt('af-fijos',gs(fijos));txt('af-vars',gs(vars));
   $('af-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
   $('af-flujo').className='tv '+(flujo>=0?'pos':'neg');
   const aa=$('adri-alert');
-  if(aa) aa.innerHTML=flujo>=0
+  if(aa)aa.innerHTML=flujo>=0
     ?`<div class="alerta a-green"><strong>Mes positivo</strong> — ${gs(flujo)} de margen.</div>`
     :`<div class="alerta a-red"><strong>Mes ajustado</strong> — faltan ${gs(Math.abs(flujo))}.</div>`;
 
   const bc={};
-  gastos.forEach(g=>{bc[g.cat]=(bc[g.cat]||0)+g.monto});
+  gastos.forEach(g=>{if(g.cat!=='Gasto fijo recurrente')bc[g.cat]=(bc[g.cat]||0)+g.monto});
   $('vars-fer').innerHTML=Object.keys(bc).length
     ?Object.entries(bc).sort((a,b)=>b[1]-a[1]).map(([c,t])=>
       `<div class="trow"><span class="tl">${c}</span><span class="tv neg">${gs(t)}</span></div>`).join('')
@@ -536,14 +685,14 @@ function recalc() {
   renderProj(ing,fijos);
 }
 
-function recalcDiesa() {
+function recalcDiesa(){
   const gval=Math.round(v('v-dusd')*v('v-tc'));
   $('v-dcalc').textContent=gs(gval);
   $('v-diesa').value=gval;
   recalc();
 }
 
-function renderProj(ing,fijos) {
+function renderProj(ing,fijos){
   const cf=v('v-familiar'),cp=v('v-itau-p'),ce=v('v-itau-e'),cd=v('v-diesa');
   const years=[{a:2026,f:cf,p:cp,e:ce,d:cd},{a:2027,f:cf,p:cp,e:ce,d:cd},{a:2028,f:cf,p:cp,e:ce,d:cd},{a:2029,f:cf,p:cp*5/12,e:ce,d:cd*7/12},{a:2030,f:cf*4/12,p:0,e:0,d:0},{a:2031,f:0,p:0,e:0,d:0}];
   const fm=n=>n>0?(n/1e6).toFixed(2)+'M':'<span style="color:var(--green)">✓</span>';
@@ -553,63 +702,70 @@ function renderProj(ing,fijos) {
   }).join('');
   const fl0=ing-(years[0].f+years[0].p+years[0].e+years[0].d)-fijos;
   $('proj-alert').textContent=fl0>=0
-    ?`Con ingresos actuales hay superávit base de +${(fl0/1e6).toFixed(1)}M Gs. La situación mejora significativamente desde 2029.`
-    :`Con ingresos actuales hay déficit base de ${(fl0/1e6).toFixed(1)}M Gs. La situación mejora desde 2029.`;
+    ?`Superávit base +${(fl0/1e6).toFixed(1)}M Gs. La situación mejora significativamente desde 2029.`
+    :`Déficit base ${(fl0/1e6).toFixed(1)}M Gs. La situación mejora significativamente desde 2029.`;
 }
 
 // ══════════════════════════════════════════
-// GASTOS
+// GASTOS (carga manual)
 // ══════════════════════════════════════════
-async function cargarGasto() {
-  const fecha=$('g-fecha').value, monto=parseFloat($('g-monto').value);
-  const desc=$('g-desc').value.trim(), cat=$('g-cat').value;
-  const medio=$('g-medio').value, quien=$('g-quien').value, notas=$('g-notas').value.trim();
+async function cargarGasto(){
+  const fecha=$('g-fecha').value,monto=parseFloat($('g-monto').value);
+  const desc=$('g-desc').value.trim(),cat=$('g-cat').value;
+  const medio=$('g-medio').value,quien=$('g-quien').value,notas=$('g-notas').value.trim();
   if(!fecha||!monto||!desc||!cat||!medio||!quien){toast('Completá todos los campos');return}
-  if(medio==='TC GNB (supermercado)'&&cat!=='Supermercado'){toast('⚠ TC GNB es exclusiva para Supermercado');return}
-
-  const gasto = { id:Date.now(), fecha, monto, desc, cat, medio, quien, notas };
-  gastos.push(gasto);
-  localStorage.setItem('cfo_gastos_v4', JSON.stringify(gastos));
+  if(medio==='TC GNB (supermercado)'&&cat!=='Supermercado'){toast('⚠ TC GNB es solo para Supermercado');return}
+  const g={id:Date.now(),fecha,monto,desc,cat,medio,quien,notas};
+  gastos.push(g);
+  localStorage.setItem(GKEY,JSON.stringify(gastos));
   ['g-monto','g-desc','g-notas'].forEach(id=>$(id).value='');
-  $('g-cat').value=''; $('g-medio').value=''; $('g-quien').value='';
-  renderAdri(); recalc(); toast('✓ Registrando...');
-
-  const ok = await enviarGastoSheets(gasto);
-  toast(ok ? '✓ Guardado en Sheets' : '✓ Guardado localmente');
+  $('g-cat').value='';$('g-medio').value='';$('g-quien').value='';
+  renderAdri();recalc();toast('Registrando...');
+  const ok=await apiPost({accion:'nuevo_gasto',gasto:g});
+  toast(ok.ok?'✓ Guardado en Sheets':'✓ Guardado localmente');
 }
 
-async function delGasto(id) {
-  gastos = gastos.filter(g=>g.id!==id);
-  localStorage.setItem('cfo_gastos_v4', JSON.stringify(gastos));
-  renderAdri(); recalc();
-  const ok = await eliminarGastoSheets(id);
-  toast(ok ? 'Eliminado del Sheets' : 'Eliminado localmente');
+async function delGasto(id){
+  gastos=gastos.filter(g=>g.id!==id);
+  localStorage.setItem(GKEY,JSON.stringify(gastos));
+  renderAdri();recalc();
+  await apiPost({accion:'eliminar_gasto',id});
+  toast('Gasto eliminado');
 }
 
-function renderAdri() {
-  const total=gastos.reduce((s,g)=>s+g.monto,0);
+function renderAdri(){
+  const vars=gastos.filter(g=>g.cat!=='Gasto fijo recurrente');
+  const total=vars.reduce((s,g)=>s+g.monto,0);
   $('a-total').textContent=(total/1e6).toFixed(2)+'M';
-  $('a-count').textContent=gastos.length;
-  const ult=[...gastos].sort((a,b)=>b.id-a.id).slice(0,5);
+  $('a-count').textContent=vars.length;
+  const ult=[...vars].sort((a,b)=>b.id-a.id).slice(0,5);
   $('adri-ult').innerHTML=ult.length?ult.map(g=>`
-    <div class="trow"><span class="tl">
-      <span style="font-size:10px;color:var(--text2);font-family:'DM Mono',monospace">${g.fecha}</span>
-      <span style="display:block;font-weight:500">${g.desc}</span>
-      <span style="font-size:11px;color:var(--text2)">${g.cat} · ${g.medio} · ${g.quien}</span>
-    </span><div style="text-align:right"><div class="tv neg" style="font-size:12px">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div></div>`).join('')
+    <div class="trow">
+      <span class="tl">
+        <span style="font-size:9px;color:var(--text2);font-family:'DM Mono',monospace">${g.fecha}</span>
+        <span style="display:block;font-weight:500;font-size:12px">${g.desc}</span>
+        <span style="font-size:10px;color:var(--text2)">${g.cat} · ${g.medio} · ${g.quien}</span>
+      </span>
+      <div style="text-align:right;flex-shrink:0">
+        <div class="tv neg">${gs(g.monto)}</div>
+        <button class="delbtn" onclick="delGasto(${g.id})">✕</button>
+      </div>
+    </div>`).join('')
     :'<div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div>';
   const bc={},bm={};
-  gastos.forEach(g=>{bc[g.cat]=(bc[g.cat]||0)+g.monto; bm[g.medio]=(bm[g.medio]||0)+g.monto});
+  vars.forEach(g=>{bc[g.cat]=(bc[g.cat]||0)+g.monto;bm[g.medio]=(bm[g.medio]||0)+g.monto});
   $('a-bycat').innerHTML=Object.keys(bc).length
     ?Object.entries(bc).sort((a,b)=>b[1]-a[1]).map(([c,t])=>`<div class="trow"><span class="tl">${c}</span><span class="tv neg">${gs(t)}</span></div>`).join('')
     :'<div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div>';
   $('a-bymedio').innerHTML=Object.keys(bm).length
     ?Object.entries(bm).sort((a,b)=>b[1]-a[1]).map(([m,t])=>`<div class="trow"><span class="tl">${m}</span><span class="tv neg">${gs(t)}</span></div>`).join('')
     :'<div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div>';
-  $('a-lista').innerHTML=[...gastos].sort((a,b)=>b.id-a.id).map(g=>`
-    <div class="gitem"><span class="gfecha">${g.fecha}</span>
-    <span><div class="gdesc">${g.desc}</div><div class="gcat">${g.cat} · ${g.medio} · ${g.quien}</div></span>
-    <div style="text-align:right"><div class="gmonto">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div></div>`).join('')
+  $('a-lista').innerHTML=[...vars].sort((a,b)=>b.id-a.id).map(g=>`
+    <div class="gitem">
+      <span class="gfecha">${g.fecha}</span>
+      <span><div class="gdesc">${g.desc}</div><div class="gcat">${g.cat} · ${g.medio} · ${g.quien}</div></span>
+      <div style="text-align:right;flex-shrink:0"><div class="gmonto">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div>
+    </div>`).join('')
     ||'<div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div>';
 }
 
@@ -617,34 +773,38 @@ function renderAdri() {
 // ESCENARIOS
 // ══════════════════════════════════════════
 const BASE={fijo:22000000,comision:10361000,ef:7000000,adri:2000000,ea:0};
-function esc(tipo) {
+function esc(tipo){
   if(tipo==='sin-comision'){$('v-comision').value=0;$('v-extra-fer').value=0;$('v-extra-adri').value=0}
   else if(tipo==='con-comision'){$('v-comision').value=10361000;$('v-extra-fer').value=0;$('v-extra-adri').value=0}
   else if(tipo==='solo-fijo'){$('v-comision').value=0;$('v-extra-fer').value=0;$('v-adri').value=0;$('v-extra-adri').value=0}
-  else{$('v-fijo').value=BASE.fijo;$('v-comision').value=BASE.comision;$('v-extra-fer').value=BASE.ef;$('v-adri').value=BASE.adri;$('v-extra-adri').value=BASE.ea}
+  else{Object.entries({...BASE}).forEach(([k,val])=>{const map={fijo:'v-fijo',comision:'v-comision',ef:'v-extra-fer',adri:'v-adri',ea:'v-extra-adri'};if(map[k])$(map[k]).value=val})}
   recalc();
-  toast({['sin-comision']:'Escenario: sin comisión',['con-comision']:'Escenario: con comisión',['solo-fijo']:'Escenario: solo fijo',reset:'Valores reales'}[tipo]);
+  toast({['sin-comision']:'Sin comisión',['con-comision']:'Con comisión',['solo-fijo']:'Solo salario',reset:'Valores reales'}[tipo]);
 }
 
 // ══════════════════════════════════════════
 // NAVEGACIÓN
 // ══════════════════════════════════════════
-const FTABS=['resumen','calc','deudas','proj'], ATABS=['cargar','gastos','flujo'];
-function setTab(btn,p){FTABS.forEach(t=>$('pane-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
-function setTabA(btn,p){ATABS.forEach(t=>$('adri-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(p==='gastos'||p==='flujo')renderAdri()}
-function setVista(v,btn){document.querySelectorAll('.vista').forEach(e=>e.classList.remove('active'));$('vista-'+v).classList.add('active');document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+const FTABS=['resumen','recurrentes','calc','deudas','proj'],ATABS=['cargar','gastos','flujo'];
+function setT(btn,p){FTABS.forEach(t=>$('pane-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(p==='recurrentes')renderRecurrentes()}
+function setTA(btn,p){ATABS.forEach(t=>$('adri-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(p==='gastos'||p==='flujo')renderAdri()}
+function setV(v,btn){document.querySelectorAll('.vista').forEach(e=>e.classList.remove('active'));$('vista-'+v).classList.add('active');document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
 
 // ══════════════════════════════════════════
 // TOAST
 // ══════════════════════════════════════════
 let tT;
-function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2500)}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2200)}
 
 // ══════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════
-$('g-fecha').valueAsDate=new Date();
-recalc(); renderAdri();
+async function init(){
+  $('g-fecha').valueAsDate=new Date();
+  recalc();renderAdri();renderRecurrentes();
+  await cargarGastosSheets();
+  recalc();renderAdri();
+}
 </script>
 </body>
 </html>
