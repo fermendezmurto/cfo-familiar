@@ -13,7 +13,6 @@
 :root{--navy:#0f2140;--navy2:#1a3a5c;--blue:#2563eb;--blue-l:#dbeafe;--green:#16a34a;--green-l:#dcfce7;--red:#dc2626;--red-l:#fee2e2;--amber:#d97706;--amber-l:#fef3c7;--gray:#6b7280;--gray-l:#f9fafb;--border:#e5e7eb;--text:#111827;--text2:#6b7280;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#f1f5f9;color:var(--text);font-size:14px;-webkit-tap-highlight-color:transparent}
-
 /* PIN */
 #pin-screen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:20px}
 .pin-logo{color:#fff;font-size:22px;font-weight:600}.pin-logo span{color:#60a5fa}
@@ -27,70 +26,57 @@ body{font-family:'DM Sans',sans-serif;background:#f1f5f9;color:var(--text);font-
 .pin-btn:active{transform:scale(.93);background:#e5e7eb}
 .pin-btn.del{font-size:13px;color:var(--text2)}
 .pin-error{font-size:12px;color:var(--red);min-height:16px;margin-top:6px}
-
 /* TOPBAR */
 .topbar{background:var(--navy);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100}
 .tlogo{color:#fff;font-size:15px;font-weight:600}.tlogo span{color:#60a5fa}
 .vtoggle{display:flex;gap:3px;background:rgba(255,255,255,.1);padding:3px;border-radius:8px}
 .vbtn{padding:4px 12px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.55);background:transparent;transition:all .15s}
 .vbtn.active{background:#fff;color:var(--navy)}
-.sync-area{display:flex;align-items:center;gap:6px}
-.sync-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);font-size:11px;padding:4px 6px;border-radius:6px;font-family:'DM Sans',sans-serif}
-.sync-btn:active{background:rgba(255,255,255,.1)}
+.sync-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);font-size:11px;padding:4px 8px;border-radius:6px;font-family:'DM Sans',sans-serif}
 .sdot{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;margin-right:3px}
 .sdot.spin{background:#f59e0b;animation:pu .7s infinite}
 .sdot.err{background:#ef4444}
 @keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
-
 /* LAYOUT */
-.vista{display:none;padding:12px;max-width:860px;margin:0 auto}.vista.active{display:block}
-.tabs{display:flex;gap:2px;background:#e2e8f0;padding:3px;border-radius:10px;margin-bottom:12px}
-.tab{flex:1;text-align:center;padding:7px 3px;border-radius:8px;font-size:11px;font-weight:500;cursor:pointer;color:var(--text2);border:none;background:none;font-family:'DM Sans',sans-serif;transition:all .15s}
+.vista{display:none;padding:12px;max-width:900px;margin:0 auto}.vista.active{display:block}
+.tabs{display:flex;gap:2px;background:#e2e8f0;padding:3px;border-radius:10px;margin-bottom:12px;overflow-x:auto}
+.tab{flex:1;min-width:0;text-align:center;padding:7px 4px;border-radius:8px;font-size:11px;font-weight:500;cursor:pointer;color:var(--text2);border:none;background:none;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all .15s}
 .tab.active{background:#fff;color:var(--text);box-shadow:var(--sh)}
 .card{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:13px 15px;margin-bottom:11px;box-shadow:var(--sh)}
 .ctitle{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px;display:flex;align-items:center;gap:5px}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-
 /* METRICS */
 .mg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:11px}
-.mg4{grid-template-columns:repeat(4,1fr)}
 .metric{background:var(--gray-l);border-radius:9px;padding:10px 12px;border:1px solid var(--border)}
 .mlabel{font-size:10px;color:var(--text2);margin-bottom:2px}
-.mval{font-size:18px;font-weight:600;font-family:'DM Mono',monospace;line-height:1.2}
+.mval{font-size:17px;font-weight:600;font-family:'DM Mono',monospace;line-height:1.2}
 .msub{font-size:9px;color:var(--text2);margin-top:1px}
-.m-green .mval{color:var(--green)}.m-red .mval{color:var(--red)}.m-amber .mval{color:var(--amber)}
-
+.m-green .mval{color:var(--green)}.m-red .mval{color:var(--red)}.m-amber .mval{color:var(--amber)}.m-blue .mval{color:var(--blue)}
 /* ROWS */
-.trow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6;font-size:13px;gap:6px}
+.trow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6;font-size:12px;gap:6px}
 .trow:last-child{border-bottom:none}
-.tl{color:var(--text2);flex:1;font-size:12px}.tv{font-weight:600;font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap}
+.tl{color:var(--text2);flex:1}.tv{font-weight:600;font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap}
 .tv.pos{color:var(--green)}.tv.neg{color:var(--red)}
 .ttotal{background:#f8fafc;margin:5px -15px -13px;padding:9px 15px;border-radius:0 0 10px 10px;border-top:1px solid var(--border)}
 .ttotal .tl{font-weight:600;color:var(--text);font-size:13px}.ttotal .tv{font-size:13px}
-
 /* EDITABLE */
 .en{background:none;border:none;border-bottom:1.5px dashed #cbd5e1;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--green);text-align:right;width:115px;padding:1px 3px;outline:none}
 .en:focus{border-bottom-color:var(--blue);color:var(--blue);background:#eff6ff;border-radius:4px}
 .en.neg{color:var(--red)}.en.neg:focus{color:var(--blue)}
 .slabel{font-size:9px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;padding:7px 0 2px;border-bottom:1px solid #f1f5f9;margin-bottom:1px}
-
 /* ALERTS */
 .alerta{border-radius:var(--r);padding:9px 12px;font-size:12px;line-height:1.5;margin-bottom:10px;border-left:3px solid}
 .a-green{background:var(--green-l);border-color:var(--green);color:#14532d}
 .a-red{background:var(--red-l);border-color:var(--red);color:#7f1d1d}
 .a-amber{background:var(--amber-l);border-color:var(--amber);color:#78350f}
 .a-blue{background:var(--blue-l);border-color:var(--blue);color:#1e40af}
-
 /* BADGE */
 .badge{display:inline-block;font-size:9px;padding:2px 6px;border-radius:99px;font-weight:600}
 .b-red{background:var(--red-l);color:#b91c1c}.b-amber{background:var(--amber-l);color:#92400e}
-.b-blue{background:var(--blue-l);color:#1d4ed8}.b-gray{background:#f3f4f6;color:var(--gray)}
-.b-green{background:var(--green-l);color:#15803d}
-
+.b-blue{background:var(--blue-l);color:#1d4ed8}.b-gray{background:#f3f4f6;color:var(--gray)}.b-green{background:var(--green-l);color:#15803d}
 /* PROGRESS */
 .pbar{margin:4px 0 2px}.pbar-top{display:flex;justify-content:space-between;font-size:9px;color:var(--text2);margin-bottom:2px}
 .ptrack{height:4px;background:#f1f5f9;border-radius:99px}.pfill{height:4px;border-radius:99px}
-
 /* FORM */
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fg{display:flex;flex-direction:column;gap:3px}.fg.full{grid-column:1/-1}
@@ -99,66 +85,65 @@ input[type=text],input[type=number],input[type=date],select,textarea{border:1px 
 input:focus,select:focus{border-color:var(--blue)}
 .btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-top:5px;transition:background .15s}
 .btn:active{background:var(--navy2)}
-.btn-sm{padding:6px 12px;font-size:11px;width:auto;margin:0;border-radius:6px}
-.btn-outline{background:#fff;color:var(--navy);border:1px solid var(--border)}
-.btn-outline:active{background:var(--gray-l)}
-
+/* RECURRENTES */
+.rec-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;cursor:pointer}
+.rec-item:last-child{border-bottom:none}
+.rec-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;background:#fff}
+.rec-check.done{background:var(--green);border-color:var(--green)}
+.rec-check.done::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.rec-label{flex:1;font-size:12px;color:var(--text)}
+.rec-label.done{text-decoration:line-through;color:var(--text2)}
+.rec-monto{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--text2)}
+.rec-monto.done{color:var(--green)}
+.rec-medio{font-size:9px;color:var(--text2)}
+.rec-prog-bar{height:6px;background:#f1f5f9;border-radius:99px;overflow:hidden;margin:6px 0 3px}
+.rec-prog-fill{height:6px;border-radius:99px;background:var(--green);transition:width .4s}
+.rec-stats{display:flex;justify-content:space-between;font-size:10px;color:var(--text2)}
+.rec-reset{font-size:10px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline}
 /* DEUDA */
 .ditem{padding:9px 0;border-bottom:1px solid #f3f4f6;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .ditem:last-child{border-bottom:none}
 .dname{font-weight:500;font-size:12px}.ddetail{font-size:10px;color:var(--text2);margin-top:1px}
 .dsaldo{font-family:'DM Mono',monospace;font-size:12px;font-weight:600;color:var(--red);text-align:right}
 .dcuota{font-size:10px;color:var(--text2);text-align:right;margin-top:1px}
-
-/* TC CARDS */
+/* TC */
 .tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tc-card{background:var(--gray-l);border-radius:9px;padding:10px 11px;border:1px solid var(--border)}
 .tc-name{font-size:11px;font-weight:600}.tc-num{font-size:10px;color:var(--text2)}
 .tc-deuda{font-family:'DM Mono',monospace;font-size:15px;font-weight:600;color:var(--red);margin:3px 0 1px}
 .tc-venc{font-size:9px;color:var(--text2)}
-
-/* PROJ TABLE */
+/* PROJ */
 .ptable{width:100%;border-collapse:collapse;font-size:11px}
 .ptable th{background:var(--navy);color:#fff;padding:6px 7px;text-align:left;font-weight:500;font-size:10px}
 .ptable td{padding:5px 7px;border-bottom:1px solid #f3f4f6;font-family:'DM Mono',monospace}
 .ptable tr.hl td{background:var(--amber-l)}.ptable .neg{color:var(--red)}.ptable .pos{color:var(--green)}
-
-/* GASTOS */
+/* GASTO ITEM */
 .gitem{display:grid;grid-template-columns:48px 1fr auto;gap:5px 8px;align-items:center;padding:7px 0;border-bottom:1px solid #f9fafb;font-size:12px}
 .gitem:last-child{border-bottom:none}
 .gfecha{font-size:9px;color:var(--text2);font-family:'DM Mono',monospace}
 .gdesc{font-weight:500;font-size:12px}.gcat{font-size:10px;color:var(--text2)}
 .gmonto{font-family:'DM Mono',monospace;font-weight:600;color:var(--red);white-space:nowrap;font-size:11px}
 .delbtn{background:none;border:none;cursor:pointer;color:#e5e7eb;font-size:13px;padding:2px 5px;border-radius:5px}
-.delbtn:active{color:var(--red);background:var(--red-l)}
-
-/* RECURRENTES — CHECKLIST */
-.rec-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;transition:background .1s}
-.rec-item:last-child{border-bottom:none}
-.rec-item:active{background:#f9fafb}
-.rec-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;background:#fff}
-.rec-check.done{background:var(--green);border-color:var(--green)}
-.rec-check.done::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
-.rec-label{flex:1;font-size:13px;color:var(--text)}
-.rec-label.done{text-decoration:line-through;color:var(--text2)}
-.rec-monto{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--text2)}
-.rec-monto.done{color:var(--green)}
-.rec-medio{font-size:10px;color:var(--text2);white-space:nowrap}
-.rec-progress{margin:8px 0 4px}
-.rec-prog-bar{height:6px;background:#f1f5f9;border-radius:99px;overflow:hidden}
-.rec-prog-fill{height:6px;border-radius:99px;background:var(--green);transition:width .4s ease}
-.rec-stats{display:flex;justify-content:space-between;font-size:10px;color:var(--text2);margin-top:3px}
-.rec-section{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;padding:8px 0 3px;border-bottom:1px solid #f1f5f9}
-.rec-reset-btn{font-size:10px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline}
-
+.delbtn:active{color:var(--red)}
+/* INGRESO ITEM */
+.iitem{display:grid;grid-template-columns:48px 1fr auto;gap:5px 8px;align-items:center;padding:7px 0;border-bottom:1px solid #f9fafb;font-size:12px}
+.iitem:last-child{border-bottom:none}
+.imonto{font-family:'DM Mono',monospace;font-weight:600;color:var(--green);white-space:nowrap;font-size:11px}
+/* CHART */
+.chart-wrap{position:relative;width:100%;margin-bottom:6px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;font-size:11px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+/* HISTORIAL MES */
+.mes-selector{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.mes-selector select{flex:1}
+.mes-selector .btn{width:auto;margin:0;padding:7px 14px;font-size:12px}
 /* TOAST */
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--navy);color:#fff;padding:8px 18px;border-radius:99px;font-size:12px;font-weight:500;z-index:9998;transition:transform .22s ease;white-space:nowrap;pointer-events:none}
 #toast.show{transform:translateX(-50%) translateY(0)}
-
 /* RESPONSIVE */
-@media(min-width:600px){.mg{grid-template-columns:repeat(4,1fr)}.fgrid{grid-template-columns:1fr 1fr}.en{width:130px}.tab{font-size:12px}.mval{font-size:20px}.tl{font-size:13px}.tv{font-size:12px}}
-@media(max-width:360px){.mg{grid-template-columns:1fr 1fr}.mval{font-size:15px}.en{width:95px;font-size:10px}.tab{font-size:10px}.pin-btn{height:46px;font-size:16px}}
-@media(max-height:500px) and (orientation:landscape){.topbar{height:42px}.vista{padding:8px}.card{margin-bottom:7px}.mg{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:600px){.mg{grid-template-columns:repeat(4,1fr)}.fgrid{grid-template-columns:1fr 1fr}.en{width:130px}.mval{font-size:19px}}
+@media(max-width:360px){.mval{font-size:14px}.en{width:95px;font-size:10px}.tab{font-size:10px;padding:6px 2px}}
+@media(max-height:500px) and (orientation:landscape){.topbar{height:42px}.vista{padding:8px}.mg{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
@@ -177,7 +162,7 @@ input:focus,select:focus{border-color:var(--blue)}
       <button class="pin-btn" onclick="pk('1')">1</button><button class="pin-btn" onclick="pk('2')">2</button><button class="pin-btn" onclick="pk('3')">3</button>
       <button class="pin-btn" onclick="pk('4')">4</button><button class="pin-btn" onclick="pk('5')">5</button><button class="pin-btn" onclick="pk('6')">6</button>
       <button class="pin-btn" onclick="pk('7')">7</button><button class="pin-btn" onclick="pk('8')">8</button><button class="pin-btn" onclick="pk('9')">9</button>
-      <button class="pin-btn" onclick="pk('')"></button><button class="pin-btn" onclick="pk('0')">0</button><button class="pin-btn del" onclick="pd()">⌫</button>
+      <button class="pin-btn"></button><button class="pin-btn" onclick="pk('0')">0</button><button class="pin-btn del" onclick="pd()">⌫</button>
     </div>
     <div class="pin-error" id="pin-error"></div>
   </div>
@@ -193,96 +178,111 @@ input:focus,select:focus{border-color:var(--blue)}
     <button class="vbtn active" onclick="setV('fer',this)">Fer</button>
     <button class="vbtn" onclick="setV('adri',this)">Adri</button>
   </div>
-  <div class="sync-area">
-    <button class="sync-btn" onclick="syncAll()"><span class="sdot" id="sdot"></span><span id="stxt">Sync</span></button>
-  </div>
+  <button class="sync-btn" onclick="syncAll()"><span class="sdot" id="sdot"></span><span id="stxt">Sync</span></button>
 </div>
 
 <!-- ══════ VISTA FER ══════ -->
 <div id="vista-fer" class="vista active">
   <div class="tabs">
-    <button class="tab active" onclick="setT(this,'resumen')">Resumen</button>
+    <button class="tab active" onclick="setT(this,'dashboard')">Dashboard</button>
+    <button class="tab" onclick="setT(this,'ingresos')">Ingresos</button>
     <button class="tab" onclick="setT(this,'recurrentes')">Recurrentes</button>
     <button class="tab" onclick="setT(this,'calc')">Calc</button>
     <button class="tab" onclick="setT(this,'deudas')">Deudas</button>
     <button class="tab" onclick="setT(this,'proj')">Proyección</button>
   </div>
 
-  <!-- RESUMEN -->
-  <div id="pane-resumen">
+  <!-- DASHBOARD -->
+  <div id="pane-dashboard">
     <div id="alert-main"></div>
     <div class="mg">
       <div class="metric m-green"><div class="mlabel">Ingresos</div><div class="mval" id="sum-ing">—</div><div class="msub">Gs. del mes</div></div>
-      <div class="metric m-red"><div class="mlabel">Cuotas</div><div class="mval" id="sum-cuotas">—</div><div class="msub">Préstamos</div></div>
-      <div class="metric m-amber"><div class="mlabel">Fijos hogar</div><div class="mval" id="sum-fijos">—</div><div class="msub">Estimados</div></div>
-      <div class="metric" id="mf"><div class="mlabel">Flujo libre</div><div class="mval" id="sum-flujo">—</div><div class="msub">antes variables</div></div>
+      <div class="metric m-red"><div class="mlabel">Egresos fijos</div><div class="mval" id="sum-eg">—</div><div class="msub">Cuotas + hogar</div></div>
+      <div class="metric m-amber"><div class="mlabel">Variables</div><div class="mval" id="sum-vars">—</div><div class="msub">Gastos del mes</div></div>
+      <div class="metric" id="mf"><div class="mlabel">Flujo neto</div><div class="mval" id="sum-flujo">—</div><div class="msub">resultado final</div></div>
+    </div>
+
+    <!-- GRÁFICO INGRESOS VS EGRESOS -->
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Ingresos vs egresos — mes actual</div>
+      <div class="chart-legend">
+        <span><span class="leg-dot" style="background:#16a34a"></span>Ingresos</span>
+        <span><span class="leg-dot" style="background:#dc2626"></span>Egresos fijos</span>
+        <span><span class="leg-dot" style="background:#d97706"></span>Variables</span>
+      </div>
+      <div class="chart-wrap" style="height:180px"><canvas id="chart-ing-eg"></canvas></div>
+    </div>
+
+    <!-- GRÁFICO EGRESOS CATEGORIZADOS -->
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Egresos variables por categoría</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="chart-cats"></canvas></div>
+      <div id="chart-cats-legend" class="chart-legend" style="margin-top:8px"></div>
+    </div>
+
+    <!-- GRÁFICO HISTÓRICO MENSUAL -->
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Historial mensual — ingresos vs egresos</div>
+      <div class="chart-legend">
+        <span><span class="leg-dot" style="background:#16a34a"></span>Ingresos</span>
+        <span><span class="leg-dot" style="background:#dc2626"></span>Egresos</span>
+        <span><span class="leg-dot" style="background:#2563eb"></span>Flujo neto</span>
+      </div>
+      <div class="chart-wrap" style="height:200px"><canvas id="chart-hist"></canvas></div>
+    </div>
+
+    <!-- RESUMEN RÁPIDO -->
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Resumen del mes</div>
+      <div class="trow"><span class="tl">Total ingresos registrados</span><span class="tv pos" id="r-ing-dash">—</span></div>
+      <div class="trow"><span class="tl">Cuotas préstamos</span><span class="tv neg" id="r-cuotas-dash">—</span></div>
+      <div class="trow"><span class="tl">Gastos fijos hogar</span><span class="tv neg" id="r-fijos-dash">—</span></div>
+      <div class="trow"><span class="tl">Gastos variables</span><span class="tv neg" id="r-vars-dash">—</span></div>
+      <div class="trow ttotal"><span class="tl">Flujo neto</span><span class="tv" id="r-flujo-dash">—</span></div>
+    </div>
+  </div>
+
+  <!-- INGRESOS -->
+  <div id="pane-ingresos" style="display:none">
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Registrar ingreso</div>
+      <div class="fgrid">
+        <div class="fg"><label>Fecha</label><input type="date" id="i-fecha"></div>
+        <div class="fg"><label>Monto (Gs.)</label><input type="number" id="i-monto" placeholder="Ej: 22000000" inputmode="numeric"></div>
+        <div class="fg full"><label>Descripción</label><input type="text" id="i-desc" placeholder="Ej: Salario mayo, Comisión abril"></div>
+        <div class="fg">
+          <label>Tipo</label>
+          <select id="i-tipo">
+            <option value="">Seleccionar...</option>
+            <option>Salario fijo</option>
+            <option>Comisión / variable</option>
+            <option>Ingreso extra Fer</option>
+            <option>Ingreso Adri</option>
+            <option>Ingreso extra Adri</option>
+            <option>Otro ingreso</option>
+          </select>
+        </div>
+        <div class="fg"><label>Quién</label>
+          <select id="i-quien"><option value="">Seleccionar...</option><option>Fer</option><option>Adri</option><option>Ambos</option></select>
+        </div>
+        <div class="fg full"><label>Notas (opcional)</label><input type="text" id="i-notas" placeholder="Algún detalle..."></div>
+      </div>
+      <button class="btn" onclick="cargarIngreso()">Registrar ingreso</button>
+    </div>
+
+    <div class="mg" style="margin-top:4px">
+      <div class="metric m-green"><div class="mlabel">Total ingresos mes</div><div class="mval" id="i-total-mes">0</div><div class="msub">Gs. registrados</div></div>
+      <div class="metric m-blue"><div class="mlabel">Registros</div><div class="mval" id="i-count-mes">0</div><div class="msub">Este mes</div></div>
     </div>
 
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Ingresos <span style="font-size:9px;color:#94a3b8;text-transform:none;letter-spacing:0;font-weight:400;margin-left:4px">← tocá para editar</span></div>
-      <div class="trow"><span class="tl">Salario fijo neto (Fer)</span><input class="en" id="v-fijo" value="22000000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Comisión variable (Fer)</span><input class="en" id="v-comision" value="10361000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Ingreso extra Fer</span><input class="en" id="v-extra-fer" value="7000000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Ingreso Adri</span><input class="en" id="v-adri" value="2000000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Ingreso extra Adri</span><input class="en" id="v-extra-adri" value="0" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total ingresos</span><span class="tv pos" id="r-ing">—</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Ingresos registrados</div>
+      <div id="lista-ingresos"><div class="trow"><span class="tl" style="font-style:italic">Sin ingresos registrados</span></div></div>
     </div>
 
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas préstamos</div>
-      <div class="trow"><span class="tl">Banco Familiar (vehículo)</span><input class="en neg" id="v-familiar" value="6506018" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Itaú Préstamo Personal</span><input class="en neg" id="v-itau-p" value="6967118" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Itaú Préstamo Electrónico</span><input class="en neg" id="v-itau-e" value="778226" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Diesa Adri — BYD (USD 320)</span><input class="en neg" id="v-diesa" value="2432000" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total cuotas</span><span class="tv neg" id="r-cuotas">—</span></div>
-    </div>
-
-    <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Gastos fijos hogar <span style="font-size:9px;color:#94a3b8;text-transform:none;letter-spacing:0;font-weight:400;margin-left:4px">← editables</span></div>
-      <div class="slabel">Personal</div>
-      <div class="trow"><span class="tl">Niñera semana</span><input class="en neg" id="v-n1" value="2500000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Niñera finde</span><input class="en neg" id="v-n2" value="1600000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Empleada</span><input class="en neg" id="v-empleada" value="2600000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">IPS Niñera</span><input class="en neg" id="v-ips" value="0" oninput="recalc()"></div>
-      <div class="slabel">Vivienda y educación</div>
-      <div class="trow"><span class="tl">Alquiler</span><input class="en neg" id="v-alquiler" value="4700000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Colegio / guardería</span><input class="en neg" id="v-colegio" value="2350000" oninput="recalc()"></div>
-      <div class="slabel">Supermercado</div>
-      <div class="trow"><span class="tl">Super GNB (TC — tope 2,5M)</span><input class="en neg" id="v-gnb" value="2500000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Super Itaú (TC)</span><input class="en neg" id="v-sitau" value="2500000" oninput="recalc()"></div>
-      <div class="slabel">Servicios</div>
-      <div class="trow"><span class="tl">ANDE / ESSAP</span><input class="en neg" id="v-ande" value="900000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Internet Claro</span><input class="en neg" id="v-internet" value="230000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Tigo TV + Internet</span><input class="en neg" id="v-tigo" value="300000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Agua / Culligan</span><input class="en neg" id="v-agua" value="150000" oninput="recalc()"></div>
-      <div class="slabel">Seguros</div>
-      <div class="trow"><span class="tl">Seguro auto</span><input class="en neg" id="v-sauto" value="680000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Seguro hogar</span><input class="en neg" id="v-shogar" value="140000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">CIT</span><input class="en neg" id="v-cit" value="390000" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">PROTEK</span><input class="en neg" id="v-protek" value="240000" oninput="recalc()"></div>
-      <div class="slabel">Otros</div>
-      <div class="trow"><span class="tl">NEOT</span><input class="en neg" id="v-neot" value="0" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Ahorro programado</span><input class="en neg" id="v-ahorro" value="0" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Imprevistos</span><input class="en neg" id="v-imprev" value="0" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Hogar</span><input class="en neg" id="v-hogar" value="0" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Mila Actis</span><input class="en neg" id="v-mila" value="0" oninput="recalc()"></div>
-      <div class="trow"><span class="tl">Cala Actis</span><input class="en neg" id="v-cala" value="0" oninput="recalc()"></div>
-      <div class="trow ttotal"><span class="tl">Total fijos hogar</span><span class="tv neg" id="r-fijos">—</span></div>
-    </div>
-
-    <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Gastos variables del mes</div>
-      <div id="vars-fer"><div class="trow"><span class="tl" style="font-style:italic">Sin gastos cargados</span></div></div>
-      <div class="trow ttotal"><span class="tl">Total variables</span><span class="tv neg" id="r-vars">0 Gs.</span></div>
-    </div>
-
-    <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Resultado del mes</div>
-      <div class="trow"><span class="tl">Ingresos</span><span class="tv pos" id="res-ing">—</span></div>
-      <div class="trow"><span class="tl">Cuotas préstamos</span><span class="tv neg" id="res-cuotas">—</span></div>
-      <div class="trow"><span class="tl">Gastos fijos hogar</span><span class="tv neg" id="res-fijos">—</span></div>
-      <div class="trow"><span class="tl">Gastos variables</span><span class="tv neg" id="res-varst">0 Gs.</span></div>
-      <div class="trow ttotal"><span class="tl">Flujo neto</span><span class="tv" id="res-flujo">—</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Por tipo</div>
+      <div id="ingresos-by-tipo"><div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div></div>
     </div>
   </div>
 
@@ -290,31 +290,41 @@ input:focus,select:focus{border-color:var(--blue)}
   <div id="pane-recurrentes" style="display:none">
     <div class="card">
       <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Progreso del mes</div>
-      <div class="rec-progress">
-        <div class="rec-prog-bar"><div class="rec-prog-fill" id="rec-bar" style="width:0%"></div></div>
-        <div class="rec-stats"><span id="rec-done-count">0 pagados</span><span id="rec-done-monto">0 Gs. abonados</span><button class="rec-reset-btn" onclick="resetRec()">↺ Resetear mes</button></div>
-      </div>
+      <div class="rec-prog-bar"><div class="rec-prog-fill" id="rec-bar" style="width:0%"></div></div>
+      <div class="rec-stats"><span id="rec-done-count">0 pagados</span><span id="rec-done-monto">0 Gs. abonados</span><button class="rec-reset" onclick="resetRec()">↺ Resetear mes</button></div>
     </div>
-
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas de préstamos — débito automático</div>
+      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas préstamos — débito automático</div>
       <div id="rec-list-prestamos"></div>
     </div>
-
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Gastos fijos del hogar — transferencia / débito</div>
+      <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Gastos fijos del hogar</div>
       <div id="rec-list-hogar"></div>
     </div>
-
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Servicios y seguros — débito automático</div>
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Servicios y seguros</div>
       <div id="rec-list-servicios"></div>
     </div>
   </div>
 
   <!-- CALC -->
   <div id="pane-calc" style="display:none">
-    <div class="alerta a-blue" style="font-size:12px">Todos los valores del Resumen son editables. Acá simulás escenarios y ajustás el tipo de cambio.</div>
+    <div class="alerta a-blue" style="font-size:12px">Simulá escenarios ajustando cualquier valor. No afecta los registros reales.</div>
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--green)"></span>Ingresos simulados</div>
+      <div class="trow"><span class="tl">Salario fijo neto (Fer)</span><input class="en" id="v-fijo" value="22000000" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Comisión variable (Fer)</span><input class="en" id="v-comision" value="10361000" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Ingreso extra Fer</span><input class="en" id="v-extra-fer" value="7000000" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Ingreso Adri</span><input class="en" id="v-adri" value="2000000" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Ingreso extra Adri</span><input class="en" id="v-extra-adri" value="0" oninput="recalc()"></div>
+    </div>
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--red)"></span>Cuotas simuladas</div>
+      <div class="trow"><span class="tl">Banco Familiar</span><input class="en neg" id="v-familiar" value="6506018" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Itaú Personal</span><input class="en neg" id="v-itau-p" value="6967118" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Itaú Electrónico</span><input class="en neg" id="v-itau-e" value="778226" oninput="recalc()"></div>
+      <div class="trow"><span class="tl">Diesa Adri (USD)</span><input class="en neg" id="v-diesa" value="2432000" oninput="recalc()"></div>
+    </div>
     <div class="card">
       <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Tipo de cambio USD → Gs.</div>
       <div class="trow"><span class="tl">TC referencial</span><input class="en" id="v-tc" value="7600" oninput="recalcDiesa()" style="color:var(--blue)"></div>
@@ -322,12 +332,11 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="trow ttotal"><span class="tl">Cuota en Gs. (auto)</span><span class="tv neg" id="v-dcalc">2.432.000 Gs.</span></div>
     </div>
     <div class="card">
-      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Flujo en tiempo real</div>
-      <div class="trow"><span class="tl" style="font-weight:500">Ingresos</span><span class="tv pos" id="c-ing">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Cuotas</span><span class="tv neg" id="c-cuotas">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Fijos hogar</span><span class="tv neg" id="c-fijos">—</span></div>
-      <div class="trow"><span class="tl" style="font-weight:500">Variables</span><span class="tv neg" id="c-vars">—</span></div>
-      <div class="trow ttotal"><span class="tl">Flujo neto</span><span class="tv" id="c-flujo">—</span></div>
+      <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Resultado simulado</div>
+      <div class="trow"><span class="tl">Ingresos</span><span class="tv pos" id="c-ing">—</span></div>
+      <div class="trow"><span class="tl">Cuotas</span><span class="tv neg" id="c-cuotas">—</span></div>
+      <div class="trow"><span class="tl">Fijos hogar (ref.)</span><span class="tv neg" id="c-fijos">21.780.000 Gs.</span></div>
+      <div class="trow ttotal"><span class="tl">Flujo neto simulado</span><span class="tv" id="c-flujo">—</span></div>
     </div>
     <div class="card">
       <div class="ctitle"><span class="dot" style="background:var(--amber)"></span>Escenarios rápidos</div>
@@ -369,6 +378,16 @@ input:focus,select:focus{border-color:var(--blue)}
   <!-- PROYECCIÓN -->
   <div id="pane-proj" style="display:none">
     <div class="alerta a-amber" id="proj-alert" style="font-size:12px"></div>
+    <!-- Gráfico proyección flujo por año -->
+    <div class="card">
+      <div class="ctitle"><span class="dot" style="background:var(--blue)"></span>Proyección flujo libre anual</div>
+      <div class="chart-legend">
+        <span><span class="leg-dot" style="background:#16a34a"></span>Flujo positivo</span>
+        <span><span class="leg-dot" style="background:#dc2626"></span>Flujo negativo</span>
+        <span><span class="leg-dot" style="background:#2563eb"></span>Cuotas totales</span>
+      </div>
+      <div class="chart-wrap" style="height:200px"><canvas id="chart-proj"></canvas></div>
+    </div>
     <div class="card">
       <div class="ctitle"><span class="dot" style="background:var(--navy)"></span>Cuotas proyectadas por año</div>
       <div style="overflow-x:auto"><table class="ptable"><thead><tr><th>Año</th><th>Familiar</th><th>Itaú P.</th><th>Itaú E.</th><th>Diesa</th><th>Total</th><th>Flujo</th></tr></thead><tbody id="proj-body"></tbody></table></div>
@@ -444,8 +463,9 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
 </div>
-</div><!-- /app -->
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 // ══════════════════════════════════════════
 // CONFIG
@@ -453,221 +473,138 @@ input:focus,select:focus{border-color:var(--blue)}
 const PIN = "2374";
 const API = "https://script.google.com/macros/s/AKfycbwS7trjSlpLo9mXryh2WDak0cHDrWA367_Aon80WoT_oP1cpqavpzsc-9K6AYzTLqleGQ/exec";
 const GKEY = 'cfo_gastos_v5';
+const IKEY = 'cfo_ingresos_v1';
 const RKEY = 'cfo_rec_v5';
+const FIJOS_HOGAR = 21780000;
+const CUOTAS_BASE = 6506018+6967118+778226+2432000;
 
 // ══════════════════════════════════════════
-// RECURRENTES — definición completa
+// RECURRENTES
 // ══════════════════════════════════════════
-const REC_PRESTAMOS = [
-  { id:'r-familiar',  label:'Banco Familiar (vehículo)',       monto:6506018, medio:'Débito automático Itaú' },
-  { id:'r-itau-p',    label:'Itaú Préstamo Personal',          monto:6967118, medio:'Débito automático Itaú' },
-  { id:'r-itau-e',    label:'Itaú Préstamo Electrónico',       monto:778226,  medio:'Débito automático Itaú' },
-  { id:'r-diesa',     label:'Diesa Adri — BYD (USD 320)',      monto:2432000, medio:'Débito automático' },
+const REC_PRESTAMOS=[
+  {id:'r-familiar',label:'Banco Familiar (vehículo)',monto:6506018,medio:'Débito automático Itaú'},
+  {id:'r-itau-p',label:'Itaú Préstamo Personal',monto:6967118,medio:'Débito automático Itaú'},
+  {id:'r-itau-e',label:'Itaú Préstamo Electrónico',monto:778226,medio:'Débito automático Itaú'},
+  {id:'r-diesa',label:'Diesa Adri — BYD (USD 320)',monto:2432000,medio:'Débito automático'},
 ];
-const REC_HOGAR = [
-  { id:'r-alquiler',  label:'Alquiler',                        monto:4700000, medio:'Transferencia Itaú' },
-  { id:'r-ninera1',   label:'Niñera semana',                   monto:2500000, medio:'Transferencia Itaú' },
-  { id:'r-ninera2',   label:'Niñera finde',                    monto:1600000, medio:'Transferencia Itaú' },
-  { id:'r-empleada',  label:'Empleada',                        monto:2600000, medio:'Transferencia Itaú' },
-  { id:'r-colegio',   label:'Colegio / guardería',             monto:2350000, medio:'TC Sudameris (débito auto)' },
-  { id:'r-super-gnb', label:'Super GNB (TC)',                  monto:2500000, medio:'TC GNB' },
-  { id:'r-super-itau',label:'Super Itaú (TC)',                 monto:2500000, medio:'TC Itaú Fer' },
-  { id:'r-ande',      label:'ANDE / ESSAP',                    monto:900000,  medio:'Transferencia Itaú' },
+const REC_HOGAR=[
+  {id:'r-alquiler',label:'Alquiler',monto:4700000,medio:'Transferencia Itaú'},
+  {id:'r-ninera1',label:'Niñera semana',monto:2500000,medio:'Transferencia Itaú'},
+  {id:'r-ninera2',label:'Niñera finde',monto:1600000,medio:'Transferencia Itaú'},
+  {id:'r-empleada',label:'Empleada',monto:2600000,medio:'Transferencia Itaú'},
+  {id:'r-colegio',label:'Colegio / guardería',monto:2350000,medio:'TC Sudameris (débito auto)'},
+  {id:'r-super-gnb',label:'Super GNB (TC)',monto:2500000,medio:'TC GNB'},
+  {id:'r-super-itau',label:'Super Itaú (TC)',monto:2500000,medio:'TC Itaú Fer'},
+  {id:'r-ande',label:'ANDE / ESSAP',monto:900000,medio:'Transferencia Itaú'},
 ];
-const REC_SERVICIOS = [
-  { id:'r-internet',  label:'Internet Claro',                  monto:230000,  medio:'Cuenta Itaú conjunta' },
-  { id:'r-tigo',      label:'Tigo TV + Internet',              monto:300000,  medio:'Cuenta Itaú conjunta' },
-  { id:'r-agua',      label:'Agua / Culligan',                 monto:150000,  medio:'Débito automático Itaú' },
-  { id:'r-sauto',     label:'Seguro auto',                     monto:680000,  medio:'Débito automático Itaú' },
-  { id:'r-shogar',    label:'Seguro hogar',                    monto:140000,  medio:'TD Ueno Bank (débito auto)' },
-  { id:'r-cit',       label:'CIT',                             monto:390000,  medio:'Débito automático Itaú' },
-  { id:'r-protek',    label:'PROTEK',                          monto:240000,  medio:'Débito automático Itaú' },
+const REC_SERVICIOS=[
+  {id:'r-internet',label:'Internet Claro',monto:230000,medio:'Cuenta Itaú conjunta'},
+  {id:'r-tigo',label:'Tigo TV + Internet',monto:300000,medio:'Cuenta Itaú conjunta'},
+  {id:'r-agua',label:'Agua / Culligan',monto:150000,medio:'Débito automático Itaú'},
+  {id:'r-sauto',label:'Seguro auto',monto:680000,medio:'Débito automático Itaú'},
+  {id:'r-shogar',label:'Seguro hogar',monto:140000,medio:'TD Ueno Bank (débito auto)'},
+  {id:'r-cit',label:'CIT',monto:390000,medio:'Débito automático Itaú'},
+  {id:'r-protek',label:'PROTEK',monto:240000,medio:'Débito automático Itaú'},
 ];
-const ALL_REC = [...REC_PRESTAMOS, ...REC_HOGAR, ...REC_SERVICIOS];
-
-// Estado de recurrentes (persiste en localStorage)
-let recState = JSON.parse(localStorage.getItem(RKEY) || '{}');
-
-// ══════════════════════════════════════════
-// PIN
-// ══════════════════════════════════════════
-let pinBuf = "";
-function pk(d) {
-  if (!d || pinBuf.length >= 4) return;
-  pinBuf += d;
-  for(let i=0;i<4;i++) document.getElementById('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');
-  if (pinBuf.length === 4) {
-    setTimeout(() => {
-      if (pinBuf === PIN) {
-        document.getElementById('pin-screen').style.display='none';
-        document.getElementById('app').style.display='block';
-        init();
-      } else {
-        document.getElementById('pin-error').textContent='PIN incorrecto';
-        pinBuf="";
-        for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);d.className='pin-dot';d.style.background='#ef4444';setTimeout(()=>d.style.background='',500)}
-      }
-    },180);
-  }
-}
-function pd(){if(pinBuf.length>0){pinBuf=pinBuf.slice(0,-1);for(let i=0;i<4;i++)document.getElementById('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');document.getElementById('pin-error').textContent=''}}
-document.addEventListener('keydown',e=>{if(document.getElementById('pin-screen').style.display==='none')return;if(e.key>='0'&&e.key<='9')pk(e.key);else if(e.key==='Backspace')pd()});
+const ALL_REC=[...REC_PRESTAMOS,...REC_HOGAR,...REC_SERVICIOS];
+let recState=JSON.parse(localStorage.getItem(RKEY)||'{}');
 
 // ══════════════════════════════════════════
 // ESTADO
 // ══════════════════════════════════════════
-let gastos = JSON.parse(localStorage.getItem(GKEY)||'[]');
-const gs = n => Math.round(n).toLocaleString('es-PY')+' Gs.';
-const M  = n => { const v=Math.abs(n/1e6); return(n<0?'-':n>0?'+':'')+v.toFixed(1)+'M'; };
-const $  = id => document.getElementById(id);
-const v  = id => Math.abs(parseFloat($(id)?.value)||0);
-const txt= (id,t) => { const e=$(id); if(e) e.textContent=t; };
-const ING=['v-fijo','v-comision','v-extra-fer','v-adri','v-extra-adri'];
-const CUO=['v-familiar','v-itau-p','v-itau-e','v-diesa'];
-const FIJ=['v-n1','v-n2','v-empleada','v-ips','v-alquiler','v-colegio','v-gnb','v-sitau','v-ande','v-internet','v-tigo','v-agua','v-sauto','v-shogar','v-cit','v-protek','v-neot','v-ahorro','v-imprev','v-hogar','v-mila','v-cala'];
-const S  = ids => ids.reduce((s,id)=>s+v(id),0);
-const varTotal = () => gastos.reduce((s,g)=>s+g.monto,0);
+let gastos=JSON.parse(localStorage.getItem(GKEY)||'[]');
+let ingresos=JSON.parse(localStorage.getItem(IKEY)||'[]');
+
+const gs=n=>Math.round(n).toLocaleString('es-PY')+' Gs.';
+const M=n=>{const v=Math.abs(n/1e6);return(n<0?'-':n>0?'+':'')+v.toFixed(1)+'M'};
+const $=id=>document.getElementById(id);
+const txt=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+const v=id=>Math.abs(parseFloat($(id)?.value)||0);
+const CUO_IDS=['v-familiar','v-itau-p','v-itau-e','v-diesa'];
+const ING_SIM=['v-fijo','v-comision','v-extra-fer','v-adri','v-extra-adri'];
+const S=ids=>ids.reduce((s,id)=>s+v(id),0);
+
+const mesActual=()=>{const d=new Date();return d.getFullYear()+'-'+(String(d.getMonth()+1).padStart(2,'0'))};
+const gastosDelMes=mes=>gastos.filter(g=>g.fecha&&g.fecha.startsWith(mes)&&g.cat!=='Gasto fijo recurrente');
+const ingresosDelMes=mes=>ingresos.filter(i=>i.fecha&&i.fecha.startsWith(mes));
+const totalIngresos=mes=>ingresosDelMes(mes).reduce((s,i)=>s+i.monto,0);
+const totalGastos=mes=>gastosDelMes(mes).reduce((s,g)=>s+g.monto,0);
+
+// ══════════════════════════════════════════
+// PIN
+// ══════════════════════════════════════════
+let pinBuf="";
+function pk(d){
+  if(!d||pinBuf.length>=4)return;
+  pinBuf+=d;
+  for(let i=0;i<4;i++)document.getElementById('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');
+  if(pinBuf.length===4){
+    setTimeout(()=>{
+      if(pinBuf===PIN){
+        $('pin-screen').style.display='none';
+        $('app').style.display='block';
+        init();
+      } else {
+        $('pin-error').textContent='PIN incorrecto';
+        pinBuf="";
+        for(let i=0;i<4;i++){const d=$('pd'+i);d.className='pin-dot';d.style.background='#ef4444';setTimeout(()=>d.style.background='',500)}
+      }
+    },180);
+  }
+}
+function pd(){if(pinBuf.length>0){pinBuf=pinBuf.slice(0,-1);for(let i=0;i<4;i++)$('pd'+i).className='pin-dot'+(i<pinBuf.length?' filled':'');$('pin-error').textContent=''}}
+document.addEventListener('keydown',e=>{if($('pin-screen').style.display==='none')return;if(e.key>='0'&&e.key<='9')pk(e.key);else if(e.key==='Backspace')pd()});
 
 // ══════════════════════════════════════════
 // SHEETS API
 // ══════════════════════════════════════════
-function setSS(state){
-  const d=$('sdot'),t=$('stxt');
-  if(state==='loading'){d.className='sdot spin';t.textContent='Sync...'}
-  else if(state==='ok'){d.className='sdot';t.textContent='Sync'}
-  else{d.className='sdot err';t.textContent='Error'}
-}
-
-async function apiGet(accion){
-  try{
-    const r=await fetch(API+'?accion='+accion);
-    return await r.json();
-  }catch(e){return{ok:false}}
-}
-
-async function apiPost(payload){
-  try{
-    const r=await fetch(API,{method:'POST',body:JSON.stringify(payload)});
-    return await r.json();
-  }catch(e){return{ok:false}}
-}
-
-async function cargarGastosSheets(){
-  setSS('loading');
-  const d=await apiGet('gastos');
-  if(d.ok&&d.gastos){
-    gastos=d.gastos.map(g=>({...g,id:Number(g.id),monto:Number(g.monto)}));
-    localStorage.setItem(GKEY,JSON.stringify(gastos));
-    setSS('ok');
-  } else { setSS('err'); }
-}
+function setSS(s){const d=$('sdot'),t=$('stxt');if(s==='loading'){d.className='sdot spin';t.textContent='Sync...'}else if(s==='ok'){d.className='sdot';t.textContent='Sync'}else{d.className='sdot err';t.textContent='Error'}}
+async function apiGet(a){try{const r=await fetch(API+'?accion='+a);return await r.json()}catch(e){return{ok:false}}}
+async function apiPost(p){try{const r=await fetch(API,{method:'POST',body:JSON.stringify(p)});return await r.json()}catch(e){return{ok:false}}}
 
 async function syncAll(){
-  await cargarGastosSheets();
-  recalc(); renderAdri(); renderRecurrentes();
-  toast('Datos actualizados');
+  setSS('loading');
+  const [dg,di]=await Promise.all([apiGet('gastos'),apiGet('ingresos')]);
+  if(dg.ok&&dg.gastos){gastos=dg.gastos.map(g=>({...g,id:Number(g.id),monto:Number(g.monto)}));localStorage.setItem(GKEY,JSON.stringify(gastos))}
+  if(di.ok&&di.ingresos){ingresos=di.ingresos.map(i=>({...i,id:Number(i.id),monto:Number(i.monto)}));localStorage.setItem(IKEY,JSON.stringify(ingresos))}
+  setSS(dg.ok||di.ok?'ok':'err');
+  updateAll();toast('Datos actualizados');
 }
 
 // ══════════════════════════════════════════
-// RECURRENTES — RENDER Y LÓGICA
+// DASHBOARD Y RECALC
 // ══════════════════════════════════════════
-function renderRecurrentes(){
-  renderRecGroup('rec-list-prestamos', REC_PRESTAMOS);
-  renderRecGroup('rec-list-hogar', REC_HOGAR);
-  renderRecGroup('rec-list-servicios', REC_SERVICIOS);
-  updateRecProgress();
-}
+let charts={};
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id]}}
 
-function renderRecGroup(containerId, items){
-  const el=$(containerId);
-  if(!el) return;
-  el.innerHTML = items.map(item => {
-    const done = !!recState[item.id];
-    return `
-    <div class="rec-item" onclick="toggleRec('${item.id}')">
-      <div class="rec-check${done?' done':''}"></div>
-      <div style="flex:1;min-width:0">
-        <div class="rec-label${done?' done':''}">${item.label}</div>
-        <div class="rec-medio">${item.medio}</div>
-      </div>
-      <div style="text-align:right">
-        <div class="rec-monto${done?' done':''}">${gs(item.monto)}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
+function updateAll(){
+  const mes=mesActual();
+  const ing=totalIngresos(mes)||S(ING_SIM);
+  const vars=totalGastos(mes);
+  const cuotas=S(CUO_IDS);
+  const flujo=ing-cuotas-FIJOS_HOGAR-vars;
 
-function toggleRec(id){
-  recState[id] = !recState[id];
-  localStorage.setItem(RKEY, JSON.stringify(recState));
-  renderRecurrentes();
-  // Guardar en Sheets
-  const item = ALL_REC.find(r=>r.id===id);
-  if(item && recState[id]){
-    const hoy = new Date().toISOString().split('T')[0];
-    const g = {id:Date.now(),fecha:hoy,monto:item.monto,desc:item.label,cat:'Gasto fijo recurrente',medio:item.medio,quien:'Auto',notas:'Recurrente mensual'};
-    gastos.push(g);
-    localStorage.setItem(GKEY,JSON.stringify(gastos));
-    apiPost({accion:'nuevo_gasto',gasto:g});
-    recalc(); renderAdri();
-  }
-  toast(recState[id] ? '✓ Marcado como pagado' : 'Desmarcado');
-}
-
-function updateRecProgress(){
-  const total = ALL_REC.length;
-  const done  = ALL_REC.filter(r=>recState[r.id]).length;
-  const montoTotal = ALL_REC.reduce((s,r)=>s+r.monto,0);
-  const montoDone  = ALL_REC.filter(r=>recState[r.id]).reduce((s,r)=>s+r.monto,0);
-  const pct = total > 0 ? Math.round(done/total*100) : 0;
-  const bar=$('rec-bar');
-  if(bar) bar.style.width=pct+'%';
-  txt('rec-done-count', done+' / '+total+' pagados');
-  txt('rec-done-monto', gs(montoDone)+' abonados');
-}
-
-function resetRec(){
-  if(!confirm('¿Resetear todos los recurrentes del mes?')) return;
-  recState={};
-  localStorage.setItem(RKEY,JSON.stringify(recState));
-  // Eliminar gastos recurrentes del mes del array local
-  gastos = gastos.filter(g=>g.cat !== 'Gasto fijo recurrente');
-  localStorage.setItem(GKEY,JSON.stringify(gastos));
-  renderRecurrentes(); recalc(); renderAdri();
-  toast('Recurrentes reseteados');
-}
-
-// ══════════════════════════════════════════
-// RECALC
-// ══════════════════════════════════════════
-function recalc(){
-  const ing=S(ING),cuotas=S(CUO),fijos=S(FIJ),vars=varTotal();
-  const flujo=ing-cuotas-fijos-vars;
-
-  $('sum-ing').textContent=M(ing);$('sum-cuotas').textContent=M(cuotas);
-  $('sum-fijos').textContent=M(fijos);$('sum-flujo').textContent=M(flujo);
+  $('sum-ing').textContent=M(ing);
+  $('sum-eg').textContent=M(cuotas+FIJOS_HOGAR);
+  $('sum-vars').textContent=M(vars);
+  $('sum-flujo').textContent=M(flujo);
   $('mf').className='metric '+(flujo>=0?'m-green':'m-red');
 
-  txt('r-ing',gs(ing));txt('r-cuotas',gs(cuotas));
-  txt('r-fijos',gs(fijos));txt('r-vars',gs(vars));
-  txt('res-ing',gs(ing));txt('res-cuotas',gs(cuotas));
-  txt('res-fijos',gs(fijos));txt('res-varst',gs(vars));
-  $('res-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
-  $('res-flujo').className='tv '+(flujo>=0?'pos':'neg');
+  txt('r-ing-dash',gs(ing));
+  txt('r-cuotas-dash',gs(cuotas));
+  txt('r-fijos-dash',gs(FIJOS_HOGAR));
+  txt('r-vars-dash',gs(vars));
+  $('r-flujo-dash').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
+  $('r-flujo-dash').className='tv '+(flujo>=0?'pos':'neg');
 
   $('alert-main').innerHTML=flujo>=0
     ?`<div class="alerta a-green"><strong>Mes positivo</strong> — hay ${gs(flujo)} de margen.</div>`
     :`<div class="alerta a-red"><strong>Mes en déficit</strong> — faltan ${gs(Math.abs(flujo))}.</div>`;
 
-  txt('c-ing',gs(ing));txt('c-cuotas',gs(cuotas));
-  txt('c-fijos',gs(fijos));txt('c-vars',gs(vars));
-  $('c-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
-  $('c-flujo').className='tv '+(flujo>=0?'pos':'neg');
-  $('d-cuota').textContent=M(cuotas);
-
-  $('af-ing').textContent=M(ing);$('af-comp').textContent=M(cuotas+fijos);
+  // Adri
+  $('af-ing').textContent=M(ing);$('af-comp').textContent=M(cuotas+FIJOS_HOGAR);
   txt('af-ing2',gs(ing));txt('af-cuotas',gs(cuotas));
-  txt('af-fijos',gs(fijos));txt('af-vars',gs(vars));
+  txt('af-fijos',gs(FIJOS_HOGAR));txt('af-vars',gs(vars));
   $('af-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
   $('af-flujo').className='tv '+(flujo>=0?'pos':'neg');
   const aa=$('adri-alert');
@@ -675,16 +612,22 @@ function recalc(){
     ?`<div class="alerta a-green"><strong>Mes positivo</strong> — ${gs(flujo)} de margen.</div>`
     :`<div class="alerta a-red"><strong>Mes ajustado</strong> — faltan ${gs(Math.abs(flujo))}.</div>`;
 
-  const bc={};
-  gastos.forEach(g=>{if(g.cat!=='Gasto fijo recurrente')bc[g.cat]=(bc[g.cat]||0)+g.monto});
-  $('vars-fer').innerHTML=Object.keys(bc).length
-    ?Object.entries(bc).sort((a,b)=>b[1]-a[1]).map(([c,t])=>
-      `<div class="trow"><span class="tl">${c}</span><span class="tv neg">${gs(t)}</span></div>`).join('')
-    :'<div class="trow"><span class="tl" style="font-style:italic">Sin gastos cargados</span></div>';
-
-  renderProj(ing,fijos);
+  $('d-cuota').textContent=M(cuotas);
+  renderCharts(ing,cuotas,vars,flujo,mes);
+  renderIngresos();
+  renderAdri();
+  renderProj();
 }
 
+function recalc(){
+  const cuotas=S(CUO_IDS);
+  const ing=S(ING_SIM);
+  const fijos=21780000;
+  const flujo=ing-cuotas-fijos;
+  txt('c-ing',gs(ing));txt('c-cuotas',gs(cuotas));
+  $('c-flujo').textContent=(flujo>=0?'+':'-')+gs(Math.abs(flujo));
+  $('c-flujo').className='tv '+(flujo>=0?'pos':'neg');
+}
 function recalcDiesa(){
   const gval=Math.round(v('v-dusd')*v('v-tc'));
   $('v-dcalc').textContent=gs(gval);
@@ -692,22 +635,246 @@ function recalcDiesa(){
   recalc();
 }
 
-function renderProj(ing,fijos){
-  const cf=v('v-familiar'),cp=v('v-itau-p'),ce=v('v-itau-e'),cd=v('v-diesa');
-  const years=[{a:2026,f:cf,p:cp,e:ce,d:cd},{a:2027,f:cf,p:cp,e:ce,d:cd},{a:2028,f:cf,p:cp,e:ce,d:cd},{a:2029,f:cf,p:cp*5/12,e:ce,d:cd*7/12},{a:2030,f:cf*4/12,p:0,e:0,d:0},{a:2031,f:0,p:0,e:0,d:0}];
+// ══════════════════════════════════════════
+// GRÁFICOS
+// ══════════════════════════════════════════
+const CAT_COLORS=['#2563eb','#16a34a','#d97706','#dc2626','#7c3aed','#0891b2','#be185d','#65a30d','#ea580c','#6b7280'];
+
+function renderCharts(ing,cuotas,vars,flujo,mes){
+  // Chart 1: Ingresos vs Egresos (barras)
+  destroyChart('ing-eg');
+  const ctx1=document.getElementById('chart-ing-eg');
+  if(ctx1){
+    charts['ing-eg']=new Chart(ctx1,{
+      type:'bar',
+      data:{
+        labels:['Ingresos','Egresos fijos','Variables'],
+        datasets:[{
+          data:[ing,cuotas+FIJOS_HOGAR,vars],
+          backgroundColor:['rgba(22,163,74,.85)','rgba(220,38,38,.85)','rgba(217,119,6,.85)'],
+          borderRadius:6,borderSkipped:false
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+gs(c.raw)}}},
+        scales:{
+          x:{ticks:{color:'#6b7280',font:{size:11}},grid:{display:false}},
+          y:{ticks:{color:'#6b7280',font:{size:10},callback:v=>(v/1e6).toFixed(0)+'M'},grid:{color:'#f3f4f6'}}
+        }
+      }
+    });
+  }
+
+  // Chart 2: Egresos por categoría (donut)
+  const gMes=gastosDelMes(mes);
+  const byCat={};
+  gMes.forEach(g=>{byCat[g.cat]=(byCat[g.cat]||0)+g.monto});
+  destroyChart('cats');
+  const ctx2=document.getElementById('chart-cats');
+  if(ctx2){
+    const labels=Object.keys(byCat),vals=Object.values(byCat);
+    const colors=labels.map((_,i)=>CAT_COLORS[i%CAT_COLORS.length]);
+    if(labels.length>0){
+      charts['cats']=new Chart(ctx2,{
+        type:'doughnut',
+        data:{labels,datasets:[{data:vals,backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
+        options:{
+          responsive:true,maintainAspectRatio:false,cutout:'60%',
+          plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+gs(c.raw)}}}
+        }
+      });
+      const leg=$('chart-cats-legend');
+      if(leg)leg.innerHTML=labels.map((l,i)=>`<span><span class="leg-dot" style="background:${colors[i]}"></span>${l}: ${(vals[i]/1e6).toFixed(2)}M</span>`).join('');
+    } else {
+      ctx2.parentElement.innerHTML='<div style="text-align:center;padding:30px;font-size:12px;color:var(--text2)">Sin gastos variables registrados</div>';
+    }
+  }
+
+  // Chart 3: Historial mensual (últimos 6 meses)
+  const meses=[];
+  const d=new Date();
+  for(let i=5;i>=0;i--){const m=new Date(d.getFullYear(),d.getMonth()-i,1);meses.push(m.getFullYear()+'-'+String(m.getMonth()+1).padStart(2,'0'))}
+  const ings=meses.map(m=>totalIngresos(m)||S(ING_SIM));
+  const egs=meses.map(m=>totalGastos(m)+CUOTAS_BASE+FIJOS_HOGAR);
+  const flujos=meses.map((m,i)=>ings[i]-egs[i]);
+  const labels3=meses.map(m=>{const [y,mo]=m.split('-');const names=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'];return names[parseInt(mo)-1]});
+  destroyChart('hist');
+  const ctx3=document.getElementById('chart-hist');
+  if(ctx3){
+    charts['hist']=new Chart(ctx3,{
+      type:'bar',
+      data:{
+        labels:labels3,
+        datasets:[
+          {label:'Ingresos',data:ings,backgroundColor:'rgba(22,163,74,.7)',borderRadius:4,order:2},
+          {label:'Egresos',data:egs,backgroundColor:'rgba(220,38,38,.7)',borderRadius:4,order:2},
+          {label:'Flujo',data:flujos,type:'line',borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.1)',tension:.4,fill:true,borderWidth:2,pointRadius:3,order:1}
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+gs(c.raw)}}},
+        scales:{
+          x:{ticks:{color:'#6b7280',font:{size:10}},grid:{display:false}},
+          y:{ticks:{color:'#6b7280',font:{size:9},callback:v=>(v/1e6).toFixed(0)+'M'},grid:{color:'#f3f4f6'}}
+        }
+      }
+    });
+  }
+}
+
+function renderProj(){
+  const ing=totalIngresos(mesActual())||S(ING_SIM);
+  const cf=v('v-familiar')||6506018,cp=v('v-itau-p')||6967118,ce=v('v-itau-e')||778226,cd=v('v-diesa')||2432000;
+  const years=[
+    {a:2026,f:cf,p:cp,e:ce,d:cd},
+    {a:2027,f:cf,p:cp,e:ce,d:cd},
+    {a:2028,f:cf,p:cp,e:ce,d:cd},
+    {a:2029,f:cf,p:cp*5/12,e:ce,d:cd*7/12},
+    {a:2030,f:cf*4/12,p:0,e:0,d:0},
+    {a:2031,f:0,p:0,e:0,d:0},
+  ];
   const fm=n=>n>0?(n/1e6).toFixed(2)+'M':'<span style="color:var(--green)">✓</span>';
   $('proj-body').innerHTML=years.map(y=>{
-    const tot=y.f+y.p+y.e+y.d,fl=ing-tot-fijos;
+    const tot=y.f+y.p+y.e+y.d,fl=ing-tot-FIJOS_HOGAR;
     return`<tr${y.a===2026?' class="hl"':''}><td><strong>${y.a}</strong></td><td>${fm(y.f)}</td><td>${fm(y.p)}</td><td>${fm(y.e)}</td><td>${fm(y.d)}</td><td><strong class="neg">${(tot/1e6).toFixed(2)}M</strong></td><td class="${fl>=0?'pos':'neg'}">${fl>=0?'+':'-'}${(Math.abs(fl)/1e6).toFixed(1)}M</td></tr>`;
   }).join('');
-  const fl0=ing-(years[0].f+years[0].p+years[0].e+years[0].d)-fijos;
+  const fl0=ing-(years[0].f+years[0].p+years[0].e+years[0].d)-FIJOS_HOGAR;
   $('proj-alert').textContent=fl0>=0
     ?`Superávit base +${(fl0/1e6).toFixed(1)}M Gs. La situación mejora significativamente desde 2029.`
     :`Déficit base ${(fl0/1e6).toFixed(1)}M Gs. La situación mejora significativamente desde 2029.`;
+
+  // Gráfico proyección
+  destroyChart('proj');
+  const ctx=$('chart-proj');
+  if(ctx){
+    const yLabels=years.map(y=>y.a);
+    const flujos=years.map(y=>ing-(y.f+y.p+y.e+y.d)-FIJOS_HOGAR);
+    const cuotas=years.map(y=>y.f+y.p+y.e+y.d);
+    charts['proj']=new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:yLabels,
+        datasets:[
+          {label:'Flujo libre',data:flujos,backgroundColor:flujos.map(f=>f>=0?'rgba(22,163,74,.8)':'rgba(220,38,38,.8)'),borderRadius:5,order:2},
+          {label:'Cuotas',data:cuotas,type:'line',borderColor:'#2563eb',backgroundColor:'transparent',tension:.3,borderWidth:2,pointRadius:4,order:1}
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+gs(c.raw)}}},
+        scales:{
+          x:{ticks:{color:'#6b7280',font:{size:10}},grid:{display:false}},
+          y:{ticks:{color:'#6b7280',font:{size:9},callback:v=>(v/1e6).toFixed(0)+'M'},grid:{color:'#f3f4f6'}}
+        }
+      }
+    });
+  }
 }
 
 // ══════════════════════════════════════════
-// GASTOS (carga manual)
+// INGRESOS
+// ══════════════════════════════════════════
+async function cargarIngreso(){
+  const fecha=$('i-fecha').value,monto=parseFloat($('i-monto').value);
+  const desc=$('i-desc').value.trim(),tipo=$('i-tipo').value;
+  const quien=$('i-quien').value,notas=$('i-notas').value.trim();
+  if(!fecha||!monto||!desc||!tipo||!quien){toast('Completá todos los campos');return}
+  const ingr={id:Date.now(),fecha,monto,desc,tipo,quien,notas};
+  ingresos.push(ingr);
+  localStorage.setItem(IKEY,JSON.stringify(ingresos));
+  ['i-monto','i-desc','i-notas'].forEach(id=>$(id).value='');
+  $('i-tipo').value='';$('i-quien').value='';
+  updateAll();toast('Registrando ingreso...');
+  const ok=await apiPost({accion:'nuevo_ingreso',ingreso:ingr});
+  toast(ok.ok?'✓ Ingreso guardado en Sheets':'✓ Guardado localmente');
+}
+
+async function delIngreso(id){
+  ingresos=ingresos.filter(i=>i.id!==id);
+  localStorage.setItem(IKEY,JSON.stringify(ingresos));
+  updateAll();
+  await apiPost({accion:'eliminar_ingreso',id});
+  toast('Ingreso eliminado');
+}
+
+function renderIngresos(){
+  const mes=mesActual();
+  const iMes=ingresosDelMes(mes);
+  const total=iMes.reduce((s,i)=>s+i.monto,0);
+  txt('i-total-mes',(total/1e6).toFixed(2)+'M');
+  txt('i-count-mes',iMes.length);
+
+  const lista=$('lista-ingresos');
+  lista.innerHTML=[...ingresos].sort((a,b)=>b.id-a.id).slice(0,20).map(i=>`
+    <div class="iitem">
+      <span class="gfecha">${i.fecha}</span>
+      <span><div class="gdesc">${i.desc}</div><div class="gcat">${i.tipo} · ${i.quien}</div></span>
+      <div style="text-align:right;flex-shrink:0"><div class="imonto">${gs(i.monto)}</div><button class="delbtn" onclick="delIngreso(${i.id})">✕</button></div>
+    </div>`).join('')
+    ||'<div class="trow"><span class="tl" style="font-style:italic">Sin ingresos</span></div>';
+
+  const bt={};
+  iMes.forEach(i=>{bt[i.tipo]=(bt[i.tipo]||0)+i.monto});
+  $('ingresos-by-tipo').innerHTML=Object.keys(bt).length
+    ?Object.entries(bt).sort((a,b)=>b[1]-a[1]).map(([t,m])=>`<div class="trow"><span class="tl">${t}</span><span class="tv pos">${gs(m)}</span></div>`).join('')
+    :'<div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div>';
+}
+
+// ══════════════════════════════════════════
+// RECURRENTES
+// ══════════════════════════════════════════
+function renderRecurrentes(){
+  renderRecGroup('rec-list-prestamos',REC_PRESTAMOS);
+  renderRecGroup('rec-list-hogar',REC_HOGAR);
+  renderRecGroup('rec-list-servicios',REC_SERVICIOS);
+  updateRecProgress();
+}
+function renderRecGroup(cid,items){
+  const el=$(cid);if(!el)return;
+  el.innerHTML=items.map(item=>{
+    const done=!!recState[item.id];
+    return`<div class="rec-item" onclick="toggleRec('${item.id}')">
+      <div class="rec-check${done?' done':''}"></div>
+      <div style="flex:1;min-width:0"><div class="rec-label${done?' done':''}">${item.label}</div><div class="rec-medio">${item.medio}</div></div>
+      <div style="text-align:right"><div class="rec-monto${done?' done':''}">${gs(item.monto)}</div></div>
+    </div>`;
+  }).join('');
+}
+function toggleRec(id){
+  recState[id]=!recState[id];
+  localStorage.setItem(RKEY,JSON.stringify(recState));
+  renderRecurrentes();
+  const item=ALL_REC.find(r=>r.id===id);
+  if(item&&recState[id]){
+    const hoy=new Date().toISOString().split('T')[0];
+    const g={id:Date.now(),fecha:hoy,monto:item.monto,desc:item.label,cat:'Gasto fijo recurrente',medio:item.medio,quien:'Auto',notas:'Recurrente mensual'};
+    gastos.push(g);localStorage.setItem(GKEY,JSON.stringify(gastos));
+    apiPost({accion:'nuevo_gasto',gasto:g});
+    updateAll();
+  }
+  toast(recState[id]?'✓ Marcado como pagado':'Desmarcado');
+}
+function updateRecProgress(){
+  const total=ALL_REC.length,done=ALL_REC.filter(r=>recState[r.id]).length;
+  const montoTotal=ALL_REC.reduce((s,r)=>s+r.monto,0);
+  const montoDone=ALL_REC.filter(r=>recState[r.id]).reduce((s,r)=>s+r.monto,0);
+  const pct=total>0?Math.round(done/total*100):0;
+  const bar=$('rec-bar');if(bar)bar.style.width=pct+'%';
+  txt('rec-done-count',done+' / '+total+' pagados ('+pct+'%)');
+  txt('rec-done-monto',gs(montoDone)+' abonados');
+}
+function resetRec(){
+  if(!confirm('¿Resetear todos los recurrentes del mes?'))return;
+  recState={};localStorage.setItem(RKEY,JSON.stringify(recState));
+  gastos=gastos.filter(g=>g.cat!=='Gasto fijo recurrente');
+  localStorage.setItem(GKEY,JSON.stringify(gastos));
+  renderRecurrentes();updateAll();toast('Recurrentes reseteados');
+}
+
+// ══════════════════════════════════════════
+// GASTOS
 // ══════════════════════════════════════════
 async function cargarGasto(){
   const fecha=$('g-fecha').value,monto=parseFloat($('g-monto').value);
@@ -716,41 +883,33 @@ async function cargarGasto(){
   if(!fecha||!monto||!desc||!cat||!medio||!quien){toast('Completá todos los campos');return}
   if(medio==='TC GNB (supermercado)'&&cat!=='Supermercado'){toast('⚠ TC GNB es solo para Supermercado');return}
   const g={id:Date.now(),fecha,monto,desc,cat,medio,quien,notas};
-  gastos.push(g);
-  localStorage.setItem(GKEY,JSON.stringify(gastos));
+  gastos.push(g);localStorage.setItem(GKEY,JSON.stringify(gastos));
   ['g-monto','g-desc','g-notas'].forEach(id=>$(id).value='');
   $('g-cat').value='';$('g-medio').value='';$('g-quien').value='';
-  renderAdri();recalc();toast('Registrando...');
+  renderAdri();updateAll();toast('Registrando...');
   const ok=await apiPost({accion:'nuevo_gasto',gasto:g});
   toast(ok.ok?'✓ Guardado en Sheets':'✓ Guardado localmente');
 }
-
 async function delGasto(id){
   gastos=gastos.filter(g=>g.id!==id);
   localStorage.setItem(GKEY,JSON.stringify(gastos));
-  renderAdri();recalc();
+  renderAdri();updateAll();
   await apiPost({accion:'eliminar_gasto',id});
   toast('Gasto eliminado');
 }
-
 function renderAdri(){
-  const vars=gastos.filter(g=>g.cat!=='Gasto fijo recurrente');
+  const mes=mesActual();
+  const vars=gastosDelMes(mes);
   const total=vars.reduce((s,g)=>s+g.monto,0);
   $('a-total').textContent=(total/1e6).toFixed(2)+'M';
   $('a-count').textContent=vars.length;
   const ult=[...vars].sort((a,b)=>b.id-a.id).slice(0,5);
   $('adri-ult').innerHTML=ult.length?ult.map(g=>`
-    <div class="trow">
-      <span class="tl">
-        <span style="font-size:9px;color:var(--text2);font-family:'DM Mono',monospace">${g.fecha}</span>
-        <span style="display:block;font-weight:500;font-size:12px">${g.desc}</span>
-        <span style="font-size:10px;color:var(--text2)">${g.cat} · ${g.medio} · ${g.quien}</span>
-      </span>
-      <div style="text-align:right;flex-shrink:0">
-        <div class="tv neg">${gs(g.monto)}</div>
-        <button class="delbtn" onclick="delGasto(${g.id})">✕</button>
-      </div>
-    </div>`).join('')
+    <div class="trow"><span class="tl">
+      <span style="font-size:9px;color:var(--text2);font-family:'DM Mono',monospace">${g.fecha}</span>
+      <span style="display:block;font-weight:500;font-size:12px">${g.desc}</span>
+      <span style="font-size:10px;color:var(--text2)">${g.cat} · ${g.medio} · ${g.quien}</span>
+    </span><div style="text-align:right;flex-shrink:0"><div class="tv neg">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div></div>`).join('')
     :'<div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div>';
   const bc={},bm={};
   vars.forEach(g=>{bc[g.cat]=(bc[g.cat]||0)+g.monto;bm[g.medio]=(bm[g.medio]||0)+g.monto});
@@ -761,11 +920,9 @@ function renderAdri(){
     ?Object.entries(bm).sort((a,b)=>b[1]-a[1]).map(([m,t])=>`<div class="trow"><span class="tl">${m}</span><span class="tv neg">${gs(t)}</span></div>`).join('')
     :'<div class="trow"><span class="tl" style="font-style:italic">Sin datos</span></div>';
   $('a-lista').innerHTML=[...vars].sort((a,b)=>b.id-a.id).map(g=>`
-    <div class="gitem">
-      <span class="gfecha">${g.fecha}</span>
-      <span><div class="gdesc">${g.desc}</div><div class="gcat">${g.cat} · ${g.medio} · ${g.quien}</div></span>
-      <div style="text-align:right;flex-shrink:0"><div class="gmonto">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div>
-    </div>`).join('')
+    <div class="gitem"><span class="gfecha">${g.fecha}</span>
+    <span><div class="gdesc">${g.desc}</div><div class="gcat">${g.cat} · ${g.medio} · ${g.quien}</div></span>
+    <div style="text-align:right;flex-shrink:0"><div class="gmonto">${gs(g.monto)}</div><button class="delbtn" onclick="delGasto(${g.id})">✕</button></div></div>`).join('')
     ||'<div class="trow"><span class="tl" style="font-style:italic">Sin gastos</span></div>';
 }
 
@@ -774,10 +931,11 @@ function renderAdri(){
 // ══════════════════════════════════════════
 const BASE={fijo:22000000,comision:10361000,ef:7000000,adri:2000000,ea:0};
 function esc(tipo){
+  const map={fijo:'v-fijo',comision:'v-comision',ef:'v-extra-fer',adri:'v-adri',ea:'v-extra-adri'};
   if(tipo==='sin-comision'){$('v-comision').value=0;$('v-extra-fer').value=0;$('v-extra-adri').value=0}
   else if(tipo==='con-comision'){$('v-comision').value=10361000;$('v-extra-fer').value=0;$('v-extra-adri').value=0}
   else if(tipo==='solo-fijo'){$('v-comision').value=0;$('v-extra-fer').value=0;$('v-adri').value=0;$('v-extra-adri').value=0}
-  else{Object.entries({...BASE}).forEach(([k,val])=>{const map={fijo:'v-fijo',comision:'v-comision',ef:'v-extra-fer',adri:'v-adri',ea:'v-extra-adri'};if(map[k])$(map[k]).value=val})}
+  else Object.entries(BASE).forEach(([k,val])=>{if(map[k])$(map[k]).value=val});
   recalc();
   toast({['sin-comision']:'Sin comisión',['con-comision']:'Con comisión',['solo-fijo']:'Solo salario',reset:'Valores reales'}[tipo]);
 }
@@ -785,8 +943,15 @@ function esc(tipo){
 // ══════════════════════════════════════════
 // NAVEGACIÓN
 // ══════════════════════════════════════════
-const FTABS=['resumen','recurrentes','calc','deudas','proj'],ATABS=['cargar','gastos','flujo'];
-function setT(btn,p){FTABS.forEach(t=>$('pane-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(p==='recurrentes')renderRecurrentes()}
+const FTABS=['dashboard','ingresos','recurrentes','calc','deudas','proj'],ATABS=['cargar','gastos','flujo'];
+function setT(btn,p){
+  FTABS.forEach(t=>$('pane-'+t).style.display=t===p?'':'none');
+  btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(p==='recurrentes')renderRecurrentes();
+  if(p==='proj')renderProj();
+  if(p==='dashboard')updateAll();
+}
 function setTA(btn,p){ATABS.forEach(t=>$('adri-'+t).style.display=t===p?'':'none');btn.closest('.tabs').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(p==='gastos'||p==='flujo')renderAdri()}
 function setV(v,btn){document.querySelectorAll('.vista').forEach(e=>e.classList.remove('active'));$('vista-'+v).classList.add('active');document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
 
@@ -801,9 +966,9 @@ function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show')
 // ══════════════════════════════════════════
 async function init(){
   $('g-fecha').valueAsDate=new Date();
-  recalc();renderAdri();renderRecurrentes();
-  await cargarGastosSheets();
-  recalc();renderAdri();
+  $('i-fecha').valueAsDate=new Date();
+  updateAll();recalc();
+  await syncAll();
 }
 </script>
 </body>
